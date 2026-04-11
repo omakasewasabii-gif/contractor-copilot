@@ -60,6 +60,13 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
         
         setAuthenticated(true);
         
+        // Trigger Demo HUD if logging in as Admin via quick-access
+        if (!isParent && !isStaff) {
+          window.dispatchEvent(new CustomEvent('nutriserve-demo-action', { 
+            detail: { id: "01", path: "/" } 
+          }));
+        }
+        
         if (isParent) {
           router.push("/portal");
         } else if (isStaff) {
@@ -134,52 +141,36 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
       transition: "background-color 0.5s ease"
     }}>
 
-      {/* Explicit Demo Mode Trigger */}
       <div style={{
-        position: "absolute", top: 24, left: 32, zIndex: 100
+        position: "fixed", bottom: 24, right: 32, zIndex: 1000
       }}>
         <button 
           onClick={() => {
-            // Force login as Admin for the demo
             sessionStorage.setItem("nutriserve_auth", "true");
             sessionStorage.setItem("nutriserve_role", "admin");
             setAuthenticated(true);
             router.push("/");
-            // Small delay to let the dashboard mount before triggering the HUD
             setTimeout(() => {
               window.dispatchEvent(new CustomEvent('nutriserve-demo-action', { 
                 detail: { id: "01", path: "/" } 
               }));
             }, 500);
           }}
-          className="animate-pulse-gold"
+          className="animate-pulse-gold gold-glow"
           style={{
-            background: "rgba(234, 170, 0, 0.15)",
-            border: "2px solid #EAAA00",
-            borderRadius: "30px",
-            padding: "8px 20px",
+            background: "var(--accent)",
+            border: "none",
+            borderRadius: "50px",
+            padding: "12px 24px",
             display: "flex", alignItems: "center", gap: 10,
-            cursor: "pointer", color: "#EAAA00",
-            backdropFilter: "blur(10px)",
-            transition: "all 0.3s ease",
+            cursor: "pointer", color: "var(--primary-dark)",
             fontWeight: 800,
-            fontSize: "0.8rem",
-            letterSpacing: "0.05em",
-            boxShadow: "0 0 15px rgba(234, 170, 0, 0.3)"
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.transform = "scale(1.05)";
-            e.currentTarget.style.background = "rgba(234, 170, 0, 0.25)";
-            e.currentTarget.style.boxShadow = "0 0 25px rgba(234, 170, 0, 0.5)";
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.transform = "scale(1)";
-            e.currentTarget.style.background = "rgba(234, 170, 0, 0.15)";
-            e.currentTarget.style.boxShadow = "0 0 15px rgba(234, 170, 0, 0.3)";
+            fontSize: "0.9rem",
+            boxShadow: "0 10px 40px rgba(251, 222, 5, 0.4)"
           }}
         >
           <span style={{ fontSize: "1.2rem" }}>🚀</span>
-          LAUNCH DEMO MODE
+          LAUNCH FULL MISSION CONTROL
         </button>
       </div>
 
