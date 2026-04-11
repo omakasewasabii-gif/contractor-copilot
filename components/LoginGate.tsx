@@ -505,6 +505,51 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
                  <span style={{ fontSize: "0.75rem", color: theme.textPri, fontWeight: 600, transition: "color 0.3s ease" }}>{demoAccounts[2].role} Test Drive</span>
             </button>
           </div>
+
+          {/* Mission Critical Demo Trigger */}
+          <div style={{ marginTop: "24px" }}>
+            <button 
+              type="button"
+              onClick={() => {
+                sessionStorage.setItem("nutriserve_auth", "true");
+                sessionStorage.setItem("nutriserve_role", "admin");
+                setAuthenticated(true);
+                router.push("/");
+                setTimeout(() => {
+                  window.dispatchEvent(new CustomEvent('nutriserve-demo-action', { 
+                    detail: { id: "01", path: "/" } 
+                  }));
+                }, 500);
+              }}
+              className="animate-pulse-gold gold-glow"
+              style={{
+                width: "100%",
+                background: "linear-gradient(135deg, #EAAA00 0%, #FDE047 100%)",
+                border: "none",
+                borderRadius: "12px",
+                padding: "16px",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 12,
+                cursor: "pointer", color: "#041E42",
+                fontWeight: 900,
+                fontSize: "1rem",
+                boxShadow: "0 10px 30px rgba(234, 170, 0, 0.4)",
+                transition: "all 0.3s ease",
+                textTransform: "uppercase",
+                letterSpacing: "0.05em"
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = "translateY(-2px) scale(1.01)";
+                e.currentTarget.style.boxShadow = "0 15px 40px rgba(234, 170, 0, 0.6)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = "translateY(0) scale(1)";
+                e.currentTarget.style.boxShadow = "0 10px 30px rgba(234, 170, 0, 0.4)";
+              }}
+            >
+              <span style={{ fontSize: "1.4rem" }}>🚀</span>
+              LAUNCH EXECUTIVE MISSION CONTROL
+            </button>
+          </div>
         </form>
 
         {/* Footer */}
