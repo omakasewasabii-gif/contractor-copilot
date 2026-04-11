@@ -9,34 +9,39 @@ export default function DemoDirector() {
   const router = useRouter();
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(true);
-  const [currentScenario, setCurrentScenario] = useState<Scenario | null>(null);
-  const [timeLeft, setTimeLeft] = useState(7200); // 2 hours in seconds
-  const [showNarrative, setShowNarrative] = useState(false);
-  const [showBrief, setShowBrief] = useState(false);
+  const [isDemoMode, setIsDemoMode] = useState(false);
+  const [lastAction, setLastAction] = useState<string | null>(null);
 
-  const [isMounted, setIsMounted] = useState(false);
-
-  // Sync current scenario with path
+  // Keyboard Simulation Listeners
   useEffect(() => {
-    setIsMounted(true);
-    const active = DEMO_SCENARIOS.find(s => s.path === pathname);
-    if (active) setCurrentScenario(active);
-  }, [pathname]);
+    if (!isMounted || !isDemoMode) return;
 
-  useEffect(() => {
-    if (!isMounted) return;
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [isMounted]);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.shiftKey) {
+        let action = "";
+        switch (e.key.toUpperCase()) {
+          case 'S':
+            action = "ZEBRA_SCAN_SUCCESS";
+            break;
+          case 'M':
+            action = "MEDICAL_LOCKOUT";
+            break;
+          case 'P':
+            action = "PIN_PAD_ENTRY";
+            break;
+        }
 
-  const formatTime = (seconds: number) => {
-    const hrs = Math.floor(seconds / 3600);
-    const mins = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hrs}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
+        if (action) {
+          setLastAction(action);
+          window.dispatchEvent(new CustomEvent('nutriserve-hardware-sim', { detail: { action } }));
+          setTimeout(() => setLastAction(null), 3000);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMounted, isDemoMode]);
 
   const triggerScenario = (s: Scenario) => {
     setShowBrief(false); // Reset
@@ -94,7 +99,25 @@ export default function DemoDirector() {
               </div>
             </div>
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            {lastAction && (
+              <div style={{ 
+                background: 'var(--success)', color: '#fff', fontSize: '0.6rem', fontWeight: 800, 
+                padding: '4px 8px', borderRadius: '4px', animation: 'fade-in 0.3s ease'
+              }}>
+                {lastAction} SENT
+              </div>
+            )}
+            <button 
+              onClick={() => setIsDemoMode(!isDemoMode)}
+              style={{
+                background: isDemoMode ? 'var(--swarm-neon-green)' : 'rgba(255,255,255,0.1)',
+                color: isDemoMode ? '#000' : '#fff',
+                border: 'none', padding: '6px 12px', borderRadius: '12px', fontSize: '0.65rem', fontWeight: 800, cursor: 'pointer'
+              }}
+            >
+              SIM {isDemoMode ? "ON" : "OFF"}
+            </button>
             <button 
               onClick={() => setShowBrief(!showBrief)}
               style={{ 
@@ -138,11 +161,12 @@ export default function DemoDirector() {
 
         {/* PORTAL JUMP BAR */}
         <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '10px' }}>
-          <button onClick={() => router.push('/dashboard')} style={{ flex: 1, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '8px', padding: '10px', fontSize: '0.65rem', cursor: 'pointer' }}>ADMIN HQ</button>
+          <button onClick={() => router.push('/')} style={{ flex: 1, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '8px', padding: '10px', fontSize: '0.65rem', cursor: 'pointer' }}>COMMAND CENTER</button>
           <button onClick={() => router.push('/campuses')} style={{ flex: 1, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '8px', padding: '10px', fontSize: '0.65rem', cursor: 'pointer' }}>STAFF PORTAL</button>
           <button onClick={() => router.push('/portal')} style={{ flex: 1, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '8px', padding: '10px', fontSize: '0.65rem', cursor: 'pointer' }}>PARENT PORTAL</button>
         </div>
       </div>
+
 
       <style jsx global>{`
         @keyframes slide-up {

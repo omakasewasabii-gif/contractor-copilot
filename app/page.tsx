@@ -133,14 +133,133 @@ export default function Dashboard() {
       <main className="main-content">
         <Header title={t.title} subtitle={t.subtitle} />
         <div className="page-content">
-           <div className="stats-grid">
-              <div className="stat-card"><h3>12,847</h3><p>{t.stats.mealsServed}</p></div>
-              <div className="stat-card"><h3>47,832</h3><p>{t.stats.studentsActive}</p></div>
-              <div className="stat-card"><h3>$18,420</h3><p>{t.stats.revenue}</p></div>
-              <div className="stat-card"><h3>69/69</h3><p>{t.stats.campuses}</p></div>
-           </div>
-        </div>
-        <Footer />
+            <div className="stats-grid">
+              <div className="stat-card">
+                <div className="stat-icon green">📊</div>
+                <div className="stat-info">
+                  <h3>12,847</h3>
+                  <p>{t.stats.mealsServed}</p>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon blue">👤</div>
+                <div className="stat-info">
+                  <h3>47,832</h3>
+                  <p>{t.stats.studentsActive}</p>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon amber">💰</div>
+                <div className="stat-info">
+                  <h3>$18,420</h3>
+                  <p>{t.stats.revenue}</p>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon red">🏫</div>
+                <div className="stat-info">
+                  <h3>69/69</h3>
+                  <p>{t.stats.campuses}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="dashboard-row">
+              <section className="dashboard-section mission-control glass">
+                <div className="section-header">
+                  <h2>{t.mission.title}</h2>
+                  <span className="badge active">{t.compliance.verified}</span>
+                </div>
+                <div className="compliance-grid">
+                  <div className="compliance-item">
+                    <span className="check">✓</span>
+                    <p>{t.mission.cep}</p>
+                  </div>
+                  <div className="compliance-item">
+                    <span className="check">✓</span>
+                    <p>{t.mission.usda}</p>
+                  </div>
+                  <div className="compliance-item">
+                    <span className="check">✓</span>
+                    <p>{t.mission.tda}</p>
+                  </div>
+                  <div className="compliance-item">
+                    <span className="check">✓</span>
+                    <p>{t.mission.ux}</p>
+                  </div>
+                </div>
+                <div className="mission-footer">
+                  <p className="alpha-tag">{t.mission.alpha}</p>
+                </div>
+              </section>
+
+              <section className="dashboard-section throughput glass">
+                <div className="section-header">
+                  <h2>{t.throughput.title}</h2>
+                  <div className="pulse-dot"></div>
+                </div>
+                <div className="throughput-metrics">
+                  <div className="metric">
+                    <p>{t.throughput.breakfast}</p>
+                    <div className="progress-bar">
+                      <div className="progress" style={{ width: '88%' }}></div>
+                    </div>
+                    <span className="percent">88%</span>
+                  </div>
+                  <div className="metric">
+                    <p>{t.throughput.tx}</p>
+                    <div className="progress-bar">
+                      <div className="progress blue" style={{ width: '94%' }}></div>
+                    </div>
+                    <span className="percent">94%</span>
+                  </div>
+                </div>
+                <div className="latency-info">
+                  <p>{t.throughput.latency}: <span className="gold">12ms</span></p>
+                </div>
+              </section>
+            </div>
+
+            <section className="dashboard-section table-section glass">
+              <div className="section-header">
+                <div>
+                  <h2>{t.table.title}</h2>
+                  <p className="section-subtitle">{t.table.subtitle}</p>
+                </div>
+                <button className="btn btn-ghost btn-sm">{t.table.viewAll}</button>
+              </div>
+              <div className="table-responsive">
+                <table className="data-table">
+                  <thead>
+                    <tr>
+                      {t.table.cols.map((col: string, i: number) => (
+                        <th key={i}>{col}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      ["Franklin HS", "1,240", "100%", "92%", "$2,480"],
+                      ["Coronado HS", "1,180", "100%", "89%", "$2,360"],
+                      ["El Paso HS", "980", "100%", "94%", "$1,960"],
+                      ["Austin HS", "850", "100%", "87%", "$1,700"],
+                      ["Jefferson HS", "790", "100%", "91%", "$1,580"],
+                      ["Andress HS", "760", "100%", "88%", "$1,520"],
+                      ["Irvin HS", "720", "100%", "85%", "$1,440"],
+                      ["Bowie HS", "680", "100%", "82%", "$1,360"]
+                    ].map((row, i) => (
+                      <tr key={i}>
+                        {row.map((cell, j) => (
+                          <td key={j}>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+          <Footer />
       </main>
     </div>
   );
