@@ -1101,7 +1101,8 @@ a:hover {
   }
 
   .mobile-burger {
-    display: flex;
+    display: flex !important;
+    z-index: 500;
   }
 
   .main-content {
