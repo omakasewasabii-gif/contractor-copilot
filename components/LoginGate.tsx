@@ -139,39 +139,6 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
       transition: "background-color 0.5s ease"
     }}>
 
-      <div style={{
-        position: "fixed", bottom: 24, right: 32, zIndex: 1000
-      }}>
-        <button 
-          onClick={() => {
-            sessionStorage.setItem("nutriserve_auth", "true");
-            sessionStorage.setItem("nutriserve_role", "admin");
-            setAuthenticated(true);
-            router.push("/");
-            setTimeout(() => {
-              window.dispatchEvent(new CustomEvent('nutriserve-demo-action', { 
-                detail: { id: "01", path: "/" } 
-              }));
-            }, 500);
-          }}
-          className="animate-pulse-gold gold-glow"
-          style={{
-            background: "var(--accent)",
-            border: "none",
-            borderRadius: "50px",
-            padding: "12px 24px",
-            display: "flex", alignItems: "center", gap: 10,
-            cursor: "pointer", color: "var(--primary-dark)",
-            fontWeight: 800,
-            fontSize: "0.9rem",
-            boxShadow: "0 10px 40px rgba(251, 222, 5, 0.4)"
-          }}
-        >
-          <span style={{ fontSize: "1.2rem" }}>🚀</span>
-          LAUNCH FULL MISSION CONTROL
-        </button>
-      </div>
-
       {/* Theme Toggle Switch */}
       <div style={{
         position: "absolute", top: 24, right: 32, zIndex: 100,
