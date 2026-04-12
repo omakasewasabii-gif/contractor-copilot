@@ -472,7 +472,7 @@ export default function POSTerminal() {
         <div className="page-content">
           {/* Connection & Sync Status Bar */}
           <div 
-            className={focusSecure ? "demo-focus-target" : ""} 
+            className={`sync-status-bar ${focusSecure ? "demo-focus-target" : ""}`} 
             data-demo-tooltip={lang === 'en' ? "RFP 26-027 Sect 1: Offline transaction capability with automatic synchronization across all 69 campuses." : "Motor de sincronización. Transacciones sin conexión con sincronización automática."}
             style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",

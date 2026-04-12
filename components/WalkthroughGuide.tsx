@@ -65,17 +65,18 @@ export default function WalkthroughGuide() {
       content: "Once a student is identified, the categorical cycle menu populates here. Cashiers tap these high-visibility items to build the tray. The system checks exact USDA compliance in real time.",
     },
     {
-      target: ".demo-focus-target",
+      target: ".sync-status-bar",
       placement: "bottom",
       title: "Important Features: Offline Capability",
       content: "Critical feature: The Offline Synchronization engine. Even if the school loses network connectivity, the cafeteria continues processing meals. When back online, data syncs perfectly to the district ledger.",
     },
     {
-      target: ".btn-accent.btn-lg",
+      target: ".order-panel",
       placement: "left",
-      title: "Final Steps: Frictionless Checkout",
-      content: "Once the meal meets USDA reimbursement standards, click here to finalize the transaction. The system automatically processes payments or logs it as a CEP free meal.",
+      title: "Step 4: Smart Processing Engine",
+      content: "The system automatically calculates Federal/CEP program eligibility and applies balances. Transactions route seamlessly through El Paso's centralized payment gateway.",
     },
+
     {
       target: "body",
       placement: "center",
