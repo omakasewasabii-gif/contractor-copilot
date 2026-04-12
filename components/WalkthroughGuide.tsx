@@ -50,7 +50,7 @@ export default function WalkthroughGuide() {
       target: ".sidebar",
       placement: "right",
       title: "Data Management & Back of House",
-      content: "The Command Hub. Here, administrators configure Role-Based Access Controls (RBAC), Data Encryption strategies, and automated Database Backups/Disaster Recovery constraints. It hosts the automated reporting engine for Direct Certification, Identifed Student Percentages (ISP), and comprehensive revenue tracking.",
+      content: "The Command Hub. Here, administrators configure Role-Based Access Controls (RBAC), Data Encryption strategies, and automated Database Backups/Disaster Recovery constraints. It hosts the automated reporting engine for Direct Certification, Identified Student Percentages (ISP), and comprehensive revenue tracking.",
     },
     {
       target: ".student-lookup",
