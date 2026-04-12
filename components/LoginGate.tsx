@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { useToast } from "@/components/Toast";
 
 const demoAccounts = [
   { role: "District Admin", email: "admin@episd.org", pw: "admin2026", icon: "👨‍💼" },
@@ -12,6 +13,7 @@ const demoAccounts = [
 export default function LoginGate({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
+  const { showToast } = useToast();
   const [authenticated, setAuthenticated] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -548,11 +550,32 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
           <div>NutriServe v1.0 — Bilingual Enterprise POS & Portal</div>
           <div style={{ color: theme.iconColor, transition: "color 0.3s ease" }}>Built for El Paso ISD • El Paso, TX</div>
           <div style={{ marginTop: 12, display: "flex", gap: 16, justifyContent: "center" }}>
-            <span style={{ cursor: "pointer", transition: "color 0.2s" }} onMouseOver={e => e.currentTarget.style.color=theme.textPri} onMouseOut={e => e.currentTarget.style.color=theme.textSec}>Help Desk</span>
+            <span 
+              style={{ cursor: "pointer", transition: "color 0.2s" }} 
+              onMouseOver={e => e.currentTarget.style.color=theme.textPri} 
+              onMouseOut={e => e.currentTarget.style.color=theme.textSec}
+              onClick={() => showToast("Help Desk access is restricted to authenticated sessions.")}
+            >
+              Help Desk
+            </span>
             <span>•</span>
-            <span style={{ cursor: "pointer", transition: "color 0.2s" }} onMouseOver={e => e.currentTarget.style.color=theme.textPri} onMouseOut={e => e.currentTarget.style.color=theme.textSec}>Privacy Policy</span>
+            <span 
+              style={{ cursor: "pointer", transition: "color 0.2s" }} 
+              onMouseOver={e => e.currentTarget.style.color=theme.textPri} 
+              onMouseOut={e => e.currentTarget.style.color=theme.textSec}
+              onClick={() => showToast("Privacy Policy provided in final RFP documentation bundle.")}
+            >
+              Privacy Policy
+            </span>
             <span>•</span>
-            <span style={{ cursor: "pointer", transition: "color 0.2s" }} onMouseOver={e => e.currentTarget.style.color=theme.textPri} onMouseOut={e => e.currentTarget.style.color=theme.textSec}>SOC2 Report</span>
+            <span 
+              style={{ cursor: "pointer", transition: "color 0.2s" }} 
+              onMouseOver={e => e.currentTarget.style.color=theme.textPri} 
+              onMouseOut={e => e.currentTarget.style.color=theme.textSec}
+              onClick={() => showToast("SOC2 Type II Audit Report available under NDA.")}
+            >
+              SOC2 Report
+            </span>
           </div>
         </div>
       </div>
