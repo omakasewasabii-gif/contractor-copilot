@@ -228,7 +228,7 @@ export default function ReportsPage() {
             <div className="card" data-demo-tooltip="RFP 26-027 Sect 2: Daily Participation & Monthly Reimbursement">
               <div className="card-header">
                 <div className="card-title">{t.monthlyPerf.title}</div>
-                <button className="btn btn-ghost btn-sm" onClick={() => alert("Simulating Monthly Export generation...")}>{t.monthlyPerf.exportBtn}</button>
+                <button className="btn btn-ghost btn-sm" onClick={() => console.log("Simulating Monthly Export generation...")}>{t.monthlyPerf.exportBtn}</button>
               </div>
               <table className="data-table">
                 <thead>

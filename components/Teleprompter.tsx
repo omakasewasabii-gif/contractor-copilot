@@ -44,7 +44,7 @@ export default function Teleprompter() {
         boxShadow: '0 0 20px rgba(251, 222, 5, 0.4)',
         transition: 'all 0.3s ease',
       }}>
-        <span style={{ fontSize: '1.6rem', filter: 'drop-shadow(0 0 8px rgba(251, 222, 5, 0.8))' }}>🌟</span>
+        <span role="img" aria-label="star" style={{ fontSize: '1.6rem', filter: 'drop-shadow(0 0 8px rgba(251, 222, 5, 0.8))' }}>🌟</span>
       </div>
 
       <div style={{

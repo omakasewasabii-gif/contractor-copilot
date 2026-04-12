@@ -291,7 +291,7 @@ export default function MenusPage() {
               <div className="card" style={{ marginTop: "var(--space-lg)" }}>
                 <div className="card-header">
                   <div className="card-title">📖 Standardized Recipe Matrix</div>
-                  <button className="btn btn-accent btn-sm" onClick={() => alert("Feature requires District Dietitian clearance.")}>+ Create New Recipe</button>
+                  <button className="btn btn-accent btn-sm" onClick={() => console.log("Feature requires District Dietitian clearance.")}>+ Create New Recipe</button>
                 </div>
                 <div style={{ padding: "var(--space-xxl)", textAlign: "center", background: "var(--bg-input)", borderRadius: "var(--radius-md)", border: "1px dashed var(--border)" }}>
                   <span style={{ fontSize: "2.5rem", display: "block", marginBottom: "var(--space-md)" }}>🍲</span>
