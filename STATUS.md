@@ -8,6 +8,8 @@
 - **Next Milestone**: EPISD Procurement Demo (April 13, 2026)
 
 ## 🎯 Recent Major Accomplishments
+- **Walkthrough Purge**: Joyride automated tour completely eradicated; fallback Teleprompter hardened for demo safety.
+- **Production CI/CD Fix**: Resolved Vercel node panic and manually synced `main` to `master` to unlock zero-cache deployment.
 - **Build Success**: Resolved all TypeScript and CSS errors; local `npm run build` now passes 100%.
 - **Mobile Hardening**: Implemented high-fidelity animated hamburger menu and blurred overlay.
 - **Hydration Sync**: Eliminated React Error #425 (Date/Role mismatches) via `useEffect` hardening.
@@ -27,7 +29,7 @@
 - [x] **🛡️ Pitch Masterclass**: Executive Teams playbook drafted; 8-point objection handling optimized.
 
 ## 🟢 System Portfolio
-- [x] **Compliance Dashboard** — [Live](/dashboard) | Mission Control & Throughput (68-Campus Scale)
+- [x] **Compliance Dashboard** — [Live](/dashboard) | Mission Control & Throughput (69-Campus Scale)
 - [x] **PoS Terminal** — [Live](/pos) | Offline-Ready, Universal Meal Processing
 - [x] **Recipe Intelligence** — [Live](/recipes) | AI-Optimized Cycle Planning & HACCAP Logs
 - [x] **Financial Ledger** — [Live](/payments) | Real-Time Reconciliation & Parent Funding

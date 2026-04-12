@@ -10,10 +10,6 @@ export default function Footer() {
   useEffect(() => {
     const interval = setInterval(() => {
       setMealsToday(prev => prev + (Math.random() > 0.7 ? 1 : 0));
-      // Subtle fluctuation in active terminals for "live" feel
-      if (Math.random() > 0.98) {
-        setActiveTerminals(prev => prev === 69 ? 68 : 69);
-      }
     }, 3000);
     return () => clearInterval(interval);
   }, []);

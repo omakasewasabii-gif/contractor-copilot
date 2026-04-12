@@ -21,41 +21,37 @@ export default function Teleprompter() {
       onMouseLeave={() => setIsHovered(false)}
       style={{
         position: 'fixed',
-        top: '24px',
-        right: '24px',
+        top: '50%',
+        right: '0',
+        transform: 'translateY(-50%)',
         zIndex: 99999,
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-end',
+        alignItems: 'center',
       }}
     >
       <div style={{
         background: 'rgba(12, 29, 63, 0.95)',
         backdropFilter: 'blur(16px)',
         border: '2px solid var(--accent)',
-        borderRadius: '32px',
-        padding: '10px 20px',
+        borderRight: 'none',
+        borderRadius: '16px 0 0 16px',
+        padding: '12px 16px',
         color: '#fff',
         display: 'flex',
         alignItems: 'center',
-        gap: '12px',
+        justifyContent: 'center',
         cursor: 'pointer',
-        boxShadow: '0 10px 25px rgba(0,0,0,0.5), 0 0 15px rgba(251, 222, 5, 0.2)',
+        boxShadow: '0 0 20px rgba(251, 222, 5, 0.4)',
         transition: 'all 0.3s ease',
       }}>
-        <span style={{ fontSize: '1.2rem' }}>📜</span>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={{ fontSize: '0.6rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '0.1em' }}>
-            {lang === 'es' ? 'GUIÓN DE DEMOSTRACIÓN' : 'DEMO SCRIPT'}
-          </span>
-          <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>
-             Hover to expand
-          </span>
-        </div>
+        <span style={{ fontSize: '1.6rem', filter: 'drop-shadow(0 0 8px rgba(251, 222, 5, 0.8))' }}>🌟</span>
       </div>
 
       <div style={{
-        marginTop: '12px',
+        position: 'absolute',
+        right: '100%',
+        top: '50%',
+        transform: isHovered ? 'translateY(-50%) translateX(-12px) scale(1)' : 'translateY(-50%) translateX(10px) scale(0.95)',
         background: 'rgba(12, 29, 63, 0.95)',
         backdropFilter: 'blur(16px)',
         border: '2px solid var(--accent)',
@@ -63,11 +59,10 @@ export default function Teleprompter() {
         padding: '24px',
         width: '400px',
         opacity: isHovered ? 1 : 0,
-        transform: isHovered ? 'translateY(0) scale(1)' : 'translateY(-10px) scale(0.95)',
         pointerEvents: isHovered ? 'auto' : 'none',
         transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
         boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
-        transformOrigin: 'top right'
+        transformOrigin: 'center right'
       }}>
         <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff', marginBottom: '8px' }}>
           {scenario.name}

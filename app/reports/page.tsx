@@ -228,7 +228,7 @@ export default function ReportsPage() {
             <div className="card" data-demo-tooltip="RFP 26-027 Sect 2: Daily Participation & Monthly Reimbursement">
               <div className="card-header">
                 <div className="card-title">{t.monthlyPerf.title}</div>
-                <button className="btn btn-ghost btn-sm">{t.monthlyPerf.exportBtn}</button>
+                <button className="btn btn-ghost btn-sm" onClick={() => alert("Simulating Monthly Export generation...")}>{t.monthlyPerf.exportBtn}</button>
               </div>
               <table className="data-table">
                 <thead>
@@ -455,7 +455,34 @@ Exporting will download the full TDA/USDA compliant encrypted dataset.`}
                   </div>
 
                   <div style={{ marginTop: "var(--space-xl)", display: "flex", gap: "var(--space-md)", justifyContent: "center" }}>
-                    <button className="btn btn-primary" onClick={() => { setViewingReport(null); setSuccessReport(null); }}>
+                    <button className="btn btn-primary" onClick={() => { 
+                      const csvText = viewingReport === "Participation Report" || viewingReport === "Informe de Participación" ? `CAMPUS,DATE,MEALS_SERVED,ENROLLMENT,PARTICIPATION_RATE
+Transmountain ES,2026-03-01,450,468,96.15%
+Roberts ES,2026-03-01,385,402,95.77%
+Montwood HS,2026-03-01,1250,1365,91.57%
+Bel Air HS,2026-03-01,1102,1204,91.53%
+Americas HS,2026-03-01,1540,1680,91.66%` : 
+                      viewingReport === "Monthly Reimbursement Claim" || viewingReport === "Reclamo Mensual de Reembolso" ? `CLAIM_MONTH,CLAIM_YEAR,SPONSOR_ID,SITE_ID,MEAL_TYPE,FREE,REDUCED,PAID,TOTAL,CLAIM_AMOUNT
+03,2026,EPISD_001,001,BREAKFAST,12000,2000,1000,15000,34500.00
+03,2026,EPISD_001,001,LUNCH,25000,3500,2000,30500,132450.00
+03,2026,EPISD_001,002,BREAKFAST,8500,1500,500,10500,24150.00` :
+                      viewingReport === "Revenue & Expense" || viewingReport === "Ingresos y Gastos" ? `GL_ACCOUNT,DESCRIPTION,PERIOD,DEBIT,CREDIT,NET_BALANCE
+4100-00,A La Carte Sales,2026-03,0.00,45250.75,45250.75
+4105-00,Adult Meal Sales,2026-03,0.00,12400.50,12400.50
+4200-00,Federal Reimbursement,2026-03,0.00,210900.00,210900.00
+6100-00,Food Costs,2026-03,115400.20,0.00,-115400.20
+6200-00,Labor Costs,2026-03,85600.00,0.00,-85600.00` : "";
+                      if (csvText) {
+                        const blob = new Blob([csvText], { type: 'text/csv' });
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.setAttribute('href', url);
+                        a.setAttribute('download', `${viewingReport?.replace(/ /g, "_")}.csv`);
+                        a.click();
+                      }
+                      setViewingReport(null); 
+                      setSuccessReport(null); 
+                    }}>
                       {lang === 'es' ? "Descargar CSV Seguro" : "Download Secure CSV"}
                     </button>
                     <button className="btn btn-ghost" onClick={() => { setViewingReport(null); }}>
