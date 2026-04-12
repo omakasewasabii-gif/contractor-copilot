@@ -122,11 +122,11 @@ export default function WalkthroughGuide() {
       if (steps[stepIndex].route === pathname) {
         const timer = setTimeout(() => {
            setRun(true);
-        }, 600); // Allow DOM animations/hydration to settle
+        }, 1200); // Increased to 1.2s to guarantee DOM hydration
         return () => clearTimeout(timer);
       }
     }
-  }, [pathname, stepIndex, run, steps]);
+  }, [pathname, stepIndex, run]);
 
   const handleJoyrideCallback = (data: EventData) => {
     const { status, type, action, index } = data;
