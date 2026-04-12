@@ -98,6 +98,7 @@ export default function POSTerminal() {
   const [overrideItem, setOverrideItem] = useState<MenuItem | null>(null);
   const [overridePin, setOverridePin] = useState("");
   const [overrideError, setOverrideError] = useState(false);
+  const [sessionClaimed, setSessionClaimed] = useState<Set<string>>(new Set());
 
   // Hardening Phase: Institutional Program Mapping
   const getProgramAcronym = (itemCategory: string, mealTime: string = "lunch") => {
@@ -298,7 +299,7 @@ export default function POSTerminal() {
   const getTotal = useCallback(() => {
     if (!student) return 0;
     
-    let reimbursableMealsApplied = 0;
+    let reimbursableMealsApplied = sessionClaimed.has(student.id) ? 1 : 0;
     
     return order.reduce((sum, item) => {
       let itemTotal = 0;
@@ -326,7 +327,7 @@ export default function POSTerminal() {
   const getLineItemBreakdown = useCallback((itemToCalc: OrderItem, allOrderItems: OrderItem[]) => {
     if (!student) return { label: `$${itemToCalc.price.toFixed(2)}`, total: itemToCalc.price * itemToCalc.qty };
     
-    let reimbursableMealsAppliedBefore = 0;
+    let reimbursableMealsAppliedBefore = sessionClaimed.has(student.id) ? 1 : 0;
     for (const item of allOrderItems) {
       if (item.id === itemToCalc.id) break;
       if (item.reimbursable) {
@@ -372,6 +373,12 @@ export default function POSTerminal() {
     const hash = Array.from({ length: 32 }, () => Math.floor(Math.random() * 16).toString(16)).join("");
     setLastHash(hash);
     
+    // Check if order contains a reimbursable item and update session claim
+    const hasReimbursable = order.some(item => item.reimbursable);
+    if (hasReimbursable && student) {
+      setSessionClaimed(prev => new Set(prev).add(student.id));
+    }
+    
     setTransactionComplete(true);
     hw.playSound("success");
     if (isOffline) {
@@ -383,7 +390,7 @@ export default function POSTerminal() {
       setStudent(null);
       setOrder([]);
     }, 4500); // Extended for the auditor to read the hash
-  }, [isOffline, hw, student]);
+  }, [isOffline, hw, student, order]);
 
   const categories = [...new Set(menuItems.map(i => i.category))];
   const filteredItems = menuItems.filter(i => i.category === category);
