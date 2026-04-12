@@ -84,7 +84,29 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
     setPassword(acct.pw);
   };
 
-  if (authenticated) return <>{children}</>;
+  if (authenticated) {
+    if (mounted) {
+      const role = sessionStorage.getItem("nutriserve_role");
+      if (role === "staff" && !["/pos", "/menus", "/inventory", "/recipes"].some(p => pathname.startsWith(p))) {
+        return (
+          <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: theme.bg, color: theme.textPri }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "center" }}>
+              <div style={{ width: 32, height: 32, border: "3px solid var(--accent)", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+              <h3 style={{ fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>Engaging Hardware Bridge...</h3>
+            </div>
+          </div>
+        );
+      }
+      if (role === "parent" && !pathname.startsWith("/portal")) {
+        return (
+          <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: theme.bg }}>
+            <div style={{ width: 32, height: 32, border: "3px solid #3b82f6", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+          </div>
+        );
+      }
+    }
+    return <>{children}</>;
+  }
 
   const theme = isDaytime ? {
     bg: "#f0f9ff",
