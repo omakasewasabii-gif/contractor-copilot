@@ -179,7 +179,6 @@ export default function WalkthroughGuide() {
 
   return (
     <Joyride
-      key={pathname} 
       onEvent={handleJoyrideCallback}
       continuous
       run={run}
