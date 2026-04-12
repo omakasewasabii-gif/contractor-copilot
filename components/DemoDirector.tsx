@@ -11,6 +11,13 @@ export default function DemoDirector() {
   const [isVisible, setIsVisible] = useState(true);
   const [isDemoMode, setIsDemoMode] = useState(false);
   const [lastAction, setLastAction] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const [showBrief, setShowBrief] = useState(false);
+  const [currentScenario, setCurrentScenario] = useState<Scenario | null>(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Keyboard Simulation Listeners
   useEffect(() => {
@@ -93,7 +100,7 @@ export default function DemoDirector() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <span style={{ fontSize: '1.2rem' }}>🎬</span>
             <div>
-              <div style={{ fontSize: '0.6rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '0.1em' }}>MISSION CONTROL &bull; {formatTime(timeLeft)}</div>
+              <div style={{ fontSize: '0.6rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '0.1em' }}>MISSION CONTROL &bull; DEMO ACTIVE</div>
               <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>
                 {currentScenario?.name || "Awaiting Target Selection"}
               </div>
