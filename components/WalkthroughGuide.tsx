@@ -6,29 +6,93 @@ import { useRouter, usePathname } from "next/navigation";
 
 export default function WalkthroughGuide() {
   const [run, setRun] = useState(false);
+  const [stepIndex, setStepIndex] = useState(0);
   const router = useRouter();
   const pathname = usePathname();
 
-  // We want to run this primarily on the POS page.
+  type RouteStep = Step & { route: string };
+
+  const steps: RouteStep[] = [
+    {
+      target: "body",
+      placement: "center",
+      title: "NutriServe: EPISD RFP 26-027",
+      content: "Welcome. You'll see exactly how NutriServe fulfills your requirements. Our platform provides unified support for SBP, NSLP, CACFP, ASSP, and SSO programs with seamless architecture engineered specifically for your 69 campuses.",
+      skipBeacon: true,
+      route: "/",
+    },
+    {
+      target: ".sidebar",
+      placement: "right",
+      title: "Data Management & Back of House",
+      content: "The Command Hub. Here, administrators configure Role-Based Access Controls (RBAC), Data Encryption strategies, and automated Database Backups/Disaster Recovery constraints. It hosts the automated reporting engine for Direct Certification, Identified Student Percentages (ISP), and comprehensive revenue tracking.",
+      route: "/",
+    },
+    {
+      target: ".student-lookup",
+      placement: "right",
+      title: "Hardware Agnostic & Identity",
+      content: "Seamless integration with touch screen interfaces, physical POS keyboards, PIN pads, and handheld card readers. The engine instantly queries the central database, managing meal application status and delivering live low/negative balance tracking with discrete staff notifications.",
+      route: "/pos",
+    },
+    {
+      target: ".pos-grid",
+      placement: "center",
+      title: "Cycle Menus & Dietary Safety",
+      content: "Our deep Back-of-House integration pushes cycle menus, nutritional breakdowns, and recipe development directly to the POS. Real-time allergen tracking prevents cross-contamination, all mirrored on the Parent Portal for 100% transparency.",
+      route: "/pos",
+    },
+    {
+      target: ".sync-status-bar",
+      placement: "bottom",
+      title: "Offline Transaction Capability",
+      content: "Uninterrupted Execution. If internet connectivity drops, the POS immediately shifts to secure offline mode. Transactions cache locally with military-grade encryption and trigger automatic synchronization the millisecond the network is restored.",
+      route: "/pos",
+    },
+    {
+      target: ".order-panel",
+      placement: "left",
+      title: "CEP & Payment Processing",
+      content: "The ledger automatically bridges CEP and Non-CEP site data. We natively process in-person payments (check, debit, credit) alongside the Online Payment Portal, producing real-time daily participation logs and meal equivalency reports.",
+      route: "/pos",
+    },
+    {
+      target: "body",
+      placement: "center",
+      title: "Eligibility & Verification Reporting",
+      content: "Back of House Automation. The Reports engine automatically aggregates District-wide transaction logs to process Direct Certification and ISP ratios. Data connects securely to Texas state validation tools without manual batch intervention.",
+      route: "/reports",
+    },
+    {
+      target: "body",
+      placement: "center",
+      title: "Parent Portal Transparency",
+      content: "Parental Trust perfectly executed. Custom Parent Portals sync live cycle menus and track dietary allergens in real-time, matching precisely what operators see at the POS. Full nutritional accountability.",
+      route: "/portal",
+    },
+    {
+      target: "body",
+      placement: "center",
+      title: "Training, Migration & Rollout",
+      content: "Software is only half the equation. Our phased rollout for all 69 EPISD sites includes full historical data migration, hands-on onsite/virtual training, robust digital guides, and a dedicated local Account Manager backed by our Help Desk.",
+      route: "/",
+    }
+  ];
+
+  // Initialize checks
   useEffect(() => {
-    // Only check once mounted to avoid hydration errors
     const hasSeenTour = sessionStorage.getItem("nutriserve_tour_complete");
     if (!hasSeenTour) {
-      // Delay slightly so DOM is ready
       setTimeout(() => {
-        if (pathname !== "/pos") {
-           // Provide an option to start tour if they are on another page?
-           // Actually, the button will start it! 
-        }
+        // Option to conditionally start here
       }, 1000);
     }
     
-    // Listen for custom event to start tour
     const startTour = () => {
-      // If we aren't on POS, route there first
-      if (window.location.pathname !== "/pos") {
-         router.push("/pos");
-         setTimeout(() => setRun(true), 1500);
+      setStepIndex(0);
+      if (pathname !== "/") {
+         router.push("/");
+         setTimeout(() => setRun(true), 800);
       } else {
          setRun(true);
       }
@@ -38,59 +102,46 @@ export default function WalkthroughGuide() {
     return () => window.removeEventListener("start-demo-walkthrough", startTour);
   }, [pathname, router]);
 
-  const steps: Step[] = [
-    {
-      target: "body",
-      placement: "center",
-      title: "NutriServe: EPISD RFP 26-027",
-      content: "Welcome. You'll see exactly how NutriServe fulfills your requirements. Our platform provides unified support for SBP, NSLP, CACFP, ASSP, and SSO programs with seamless architecture engineered specifically for your 69 campuses.",
-      skipBeacon: true,
-    },
-    {
-      target: ".sidebar",
-      placement: "right",
-      title: "Data Management & Back of House",
-      content: "The Command Hub. Here, administrators configure Role-Based Access Controls (RBAC), Data Encryption strategies, and automated Database Backups/Disaster Recovery constraints. It hosts the automated reporting engine for Direct Certification, Identified Student Percentages (ISP), and comprehensive revenue tracking.",
-    },
-    {
-      target: ".student-lookup",
-      placement: "right",
-      title: "Hardware Agnostic & Identity",
-      content: "Seamless integration with touch screen interfaces, physical POS keyboards, PIN pads, and handheld card readers. The engine instantly queries the central database, managing meal application status and delivering live low/negative balance tracking with discrete staff notifications.",
-    },
-    {
-      target: ".pos-grid",
-      placement: "center",
-      title: "Cycle Menus & Dietary Safety",
-      content: "Our deep Back-of-House integration pushes cycle menus, nutritional breakdowns, and recipe development directly to the POS. Real-time allergen tracking prevents cross-contamination, all mirrored on the Parent Portal for 100% transparency.",
-    },
-    {
-      target: ".sync-status-bar",
-      placement: "bottom",
-      title: "Offline Transaction Capability",
-      content: "Uninterrupted Execution. If internet connectivity drops, the POS immediately shifts to secure offline mode. Transactions cache locally with military-grade encryption and trigger automatic synchronization the millisecond the network is restored.",
-    },
-    {
-      target: ".order-panel",
-      placement: "left",
-      title: "CEP & Payment Processing",
-      content: "The ledger automatically bridges CEP and Non-CEP site data. We natively process in-person payments (check, debit, credit) alongside the Online Payment Portal, producing real-time daily participation logs and meal equivalency reports.",
-    },
-    {
-      target: "body",
-      placement: "center",
-      title: "Training, Migration & Rollout",
-      content: "Software is only half the equation. Our phased rollout for all 69 EPISD sites includes full historical data migration, hands-on onsite/virtual training, robust digital guides, and a dedicated local Account Manager backed by our Help Desk.",
+  // Handle cross-page tour resumption
+  useEffect(() => {
+    if (!run && stepIndex > 0 && stepIndex < steps.length) {
+      if (steps[stepIndex].route === pathname) {
+        const timer = setTimeout(() => {
+           setRun(true);
+        }, 600); // Allow DOM animations/hydration to settle
+        return () => clearTimeout(timer);
+      }
     }
-  ];
+  }, [pathname, stepIndex, run, steps]);
 
   const handleJoyrideCallback = (data: EventData) => {
-    const { status, type } = data;
+    const { status, type, action, index } = data;
     const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
 
     if (finishedStatuses.includes(status)) {
       setRun(false);
+      setStepIndex(0);
       sessionStorage.setItem("nutriserve_tour_complete", "true");
+      return;
+    }
+
+    if (type === "step:after" || type === "error:target_not_found") {
+      let nextStepIndex = index;
+      if (action === "next") {
+        nextStepIndex = index + 1;
+      } else if (action === "prev") {
+        nextStepIndex = index - 1;
+      }
+
+      if (nextStepIndex >= 0 && nextStepIndex < steps.length) {
+        setStepIndex(nextStepIndex);
+        
+        const nextRoute = steps[nextStepIndex].route;
+        if (nextRoute !== pathname) {
+          setRun(false); // Halt the tour immediately for navigation
+          router.push(nextRoute);
+        }
+      }
     }
   };
 
@@ -99,8 +150,9 @@ export default function WalkthroughGuide() {
       onEvent={handleJoyrideCallback}
       continuous
       run={run}
+      stepIndex={stepIndex}
       scrollToFirstStep
-      steps={steps}
+      steps={steps as Step[]}
       styles={{
         buttonPrimary: {
           backgroundColor: "var(--accent)",
