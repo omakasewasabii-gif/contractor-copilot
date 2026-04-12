@@ -180,7 +180,7 @@ export default function ReportsPage() {
 
         <div className="page-content">
           {/* Summary Stats */}
-          <div className="stats-grid">
+          <div className="stats-grid" data-demo-tooltip="RFP 26-027 Sect 2: Meal Tracking & Claiming, Revenue & Expense Tracking">
             <div className="stat-card">
               <div className="stat-icon green">📊</div>
               <div className="stat-info">
@@ -213,7 +213,7 @@ export default function ReportsPage() {
                 <div className="stat-trend up">{t.stats.participationTrend}</div>
               </div>
             </div>
-            <div className="stat-card">
+            <div className="stat-card" data-demo-tooltip="RFP 26-027 Sect 2: Direct Certification & Identified Student Percentages">
               <div className="stat-icon" style={{ background: "rgba(168, 85, 247, 0.1)", color: "#a855f7" }}>🛡️</div>
               <div className="stat-info">
                 <h3>82.4%</h3>
@@ -225,7 +225,7 @@ export default function ReportsPage() {
 
           <div className="grid-2">
             {/* Monthly Performance */}
-            <div className="card">
+            <div className="card" data-demo-tooltip="RFP 26-027 Sect 2: Daily Participation & Monthly Reimbursement">
               <div className="card-header">
                 <div className="card-title">{t.monthlyPerf.title}</div>
                 <button className="btn btn-ghost btn-sm">{t.monthlyPerf.exportBtn}</button>
@@ -333,7 +333,7 @@ export default function ReportsPage() {
             </div>
           </div>
 
-          <div className="card" style={{ marginTop: "var(--space-lg)" }}>
+          <div className="card" style={{ marginTop: "var(--space-lg)" }} data-demo-tooltip="RFP 26-027 Sect 2: Start/End of Year, Edit Check, Custom Reports, Verification Process">
             <div className="card-header">
               <div className="card-title">{t.reports.title}</div>
             </div>

@@ -401,7 +401,7 @@ export default function POSTerminal() {
           {/* Connection & Sync Status Bar */}
           <div 
             className={focusSecure ? "demo-focus-target" : ""} 
-            data-demo-tooltip={lang === 'en' ? "Multi-node synchronization engine. Ensures 100% data integrity across all 69 campuses even during network failures." : "Motor de sincronización multinodo. Garantiza la integridad total de los datos en las 69 sedes, incluso en fallas de red."}
+            data-demo-tooltip={lang === 'en' ? "RFP 26-027 Sect 1: Offline transaction capability with automatic synchronization across all 69 campuses." : "Motor de sincronización. Transacciones sin conexión con sincronización automática."}
             style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
             padding: "10px 16px", marginBottom: "var(--space-md)",
@@ -554,7 +554,7 @@ export default function POSTerminal() {
               {/* Student Lookup */}
               <div 
                 className={`student-lookup ${focusSecure ? "demo-focus-target" : ""}`} 
-                data-demo-tooltip={lang === 'en' ? "Secure student authentication via encrypted 4-digit PIN, Barcode, or RFID. Cross-referenced against district SIS in real-time." : "Autenticación segura del estudiante mediante PIN de 4 dígitos, código de barras o RFID. Referenciado con el SIS del distrito en tiempo real."}
+                data-demo-tooltip={lang === 'en' ? "RFP 26-027 Sect 1: POS Hardware integration (Touch screens, on-screen keyboards, PIN pads, handheld card readers)." : "Autenticación segura: Teclados en pantalla, PIN, códigos de barras o RFID."}
                 style={{ transition: 'all 0.3s ease' }}
               >
                 <div className="card-header">
@@ -719,7 +719,7 @@ export default function POSTerminal() {
                     marginBottom: "var(--space-md)", flexWrap: "wrap"
                   }}>
                     <div 
-                      data-demo-tooltip={lang === 'en' ? "Smart compliance logic enforcing federal Offer vs. Serve guidelines. Automatically validates that a reimbursable meal contains all required components." : "Lógica de cumplimiento inteligente que aplica las guías federales de Oferta vs. Servir. Valida automáticamente que una comida reembolsable contenga todos los componentes requeridos."}
+                      data-demo-tooltip={lang === 'en' ? "RFP 26-027 Sect 1: Low/negative balance tracking and notifications. Smart compliance logic enforcing federal Offer vs. Serve guidelines." : "Lógica inteligente de Oferta vs. Servir. Valida comidas reembolsables."}
                       style={{
                       fontSize: "0.7rem", fontWeight: 800, color: "var(--accent)", 
                       background: "rgba(251, 222, 5, 0.08)", padding: "4px 12px", 
@@ -853,7 +853,7 @@ export default function POSTerminal() {
                       className="btn btn-accent btn-lg" 
                       onClick={processTransaction} 
                       style={{ flex: 2 }}
-                      data-demo-tooltip={lang === 'en' ? "Instant transaction finalization with forensic SHA-256 logging. Records meal eligibility (CEP/Free/Reduced) for state reimbursement claims." : "Finalización instantánea de transacciones con registro forense SHA-256. Registra la elegibilidad de comidas (CEP/Gratis/Reducida) para reclamos de reembolso estatal."}
+                      data-demo-tooltip={lang === 'en' ? "RFP 26-027 Sect 1: Supports Federal Meal Programs (SBP/NSLP/CACFP/ASSP/SSO), CEP and Non-CEP sites, and payment processing." : "Procesamiento de pagos y programas federales (NSLP/CEP)." }
                     >
                       {getTotal() === 0 ? `✅ ${t.completeCEP}` : `💳 ${t.process} $${getTotal().toFixed(2)}`}
                     </button>

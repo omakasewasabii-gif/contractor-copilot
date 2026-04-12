@@ -38,16 +38,19 @@ const content = {
         { icon: "💻", name: "Virtual Training", desc: "Live instructor-led remote webinars." },
         { icon: "📄", name: "Digital Guides", desc: "Bilingual (EN/ES) operational manuals." },
         { icon: "📞", name: "Dedicated Support", desc: "Regional Account Manager & 24/7 Help Desk." },
+        { icon: "🔄", name: "Data Migration", desc: "Legacy SIS data transfer and verification." },
       ]
     },
     data: {
-      title: "🛡️ Data & Security Management",
+      title: "🛡️ Software/Data Management",
       backup: "Database Backup Procedure",
       backupVal: "Incremental (Hourly) / Full (24h)",
       recovery: "Disaster Recovery",
       recoveryVal: "Geographic Redundancy (Texas-Central / West)",
       encryption: "Data Encryption",
       encryptionVal: "AES-256 at Rest / TLS 1.3 in Transit",
+      updates: "Software Updates & Upgrades",
+      updatesVal: "Zero-Downtime Auto-Deployments",
     }
   },
   es: {
@@ -81,16 +84,19 @@ const content = {
         { icon: "💻", name: "Capacitación Virtual", desc: "Seminarios web remotos en vivo." },
         { icon: "📄", name: "Guías Digitales", desc: "Manuales operativos bilingües (EN/ES)." },
         { icon: "📞", name: "Soporte Dedicado", desc: "Gerente de Cuenta Regional y Mesa de Ayuda 24/7." },
+        { icon: "🔄", name: "Migración de Datos", desc: "Transferencia de datos del SIS legado." },
       ]
     },
     data: {
-      title: "🛡️ Gestión de Datos y Seguridad",
+      title: "🛡️ Gestión de Software/Datos",
       backup: "Procedimiento de Respaldo",
       backupVal: "Incremental (Cada Hora) / Completo (24h)",
       recovery: "Recuperación ante Desastres",
       recoveryVal: "Redundancia Geográfica (Texas-Central / Oeste)",
       encryption: "Cifrado de Datos",
       encryptionVal: "AES-256 en Reposo / TLS 1.3 en Tránsito",
+      updates: "Actualizaciones de Software",
+      updatesVal: "Implementaciones automáticas sin tiempo de inactividad",
     }
   }
 };
@@ -159,7 +165,7 @@ export default function SupportPage() {
           </div>
           <div className="grid-2">
             {/* Hardware Section */}
-            <div className="card animate-fade-in gold-glow">
+            <div className="card animate-fade-in gold-glow" data-demo-tooltip="RFP 26-027 Sect 4: Server/Client/POS machine specifications and requirements.">
               <div className="card-header">
                 <div>
                   <div className="card-title">{t.hardware.title}</div>
@@ -189,7 +195,7 @@ export default function SupportPage() {
             </div>
 
             {/* Phased Rollout Section */}
-            <div className="card animate-fade-in" style={{ animationDelay: "100ms" }}>
+            <div className="card animate-fade-in" style={{ animationDelay: "100ms" }} data-demo-tooltip="RFP 26-027 Sect 4: Phased rollout plan for central office and 69 sites.">
               <div className="card-header">
                 <div>
                   <div className="card-title">{t.rollout.title}</div>
@@ -224,7 +230,7 @@ export default function SupportPage() {
 
           <div className="grid-2" style={{ marginTop: "var(--space-lg)" }}>
             {/* Training Section */}
-            <div className="card animate-fade-in" style={{ animationDelay: "200ms" }}>
+            <div className="card animate-fade-in" style={{ animationDelay: "200ms" }} data-demo-tooltip="RFP 26-027 Sect 4: Training & Support. Virtual, Onsite, Digital Guides, and Data Migration.">
               <div className="card-header">
                 <div className="card-title">{t.training.title}</div>
               </div>
@@ -245,7 +251,7 @@ export default function SupportPage() {
             </div>
 
             {/* Data & Security Section */}
-            <div className="card animate-fade-in" style={{ animationDelay: "300ms", background: "linear-gradient(135deg, rgba(12, 29, 63, 1), rgba(0, 0, 0, 1))" }}>
+            <div className="card animate-fade-in" style={{ animationDelay: "300ms", background: "linear-gradient(135deg, rgba(12, 29, 63, 1), rgba(0, 0, 0, 1))" }} data-demo-tooltip="RFP 26-027 Sect 3: Software/Data Management. Updates, backups, disaster recovery, encryption.">
               <div className="card-header">
                 <div className="card-title">{t.data.title}</div>
               </div>
@@ -258,9 +264,13 @@ export default function SupportPage() {
                   <div style={{ fontSize: "0.7rem", color: "var(--accent)", fontWeight: 700, textTransform: "uppercase", marginBottom: 4 }}>{t.data.recovery}</div>
                   <div style={{ fontWeight: 600, fontSize: "1rem" }}>{t.data.recoveryVal}</div>
                 </div>
-                <div>
+                <div style={{ borderBottom: "1px solid var(--border)", paddingBottom: "var(--space-md)" }}>
                   <div style={{ fontSize: "0.7rem", color: "var(--accent)", fontWeight: 700, textTransform: "uppercase", marginBottom: 4 }}>{t.data.encryption}</div>
                   <div style={{ fontWeight: 600, fontSize: "1rem" }}>{t.data.encryptionVal}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: "0.7rem", color: "var(--accent)", fontWeight: 700, textTransform: "uppercase", marginBottom: 4 }}>{t.data.updates}</div>
+                  <div style={{ fontWeight: 600, fontSize: "1rem" }}>{t.data.updatesVal}</div>
                 </div>
               </div>
               <div style={{ 
