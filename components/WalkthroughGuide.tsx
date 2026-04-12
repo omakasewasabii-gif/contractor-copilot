@@ -158,17 +158,15 @@ export default function WalkthroughGuide() {
 
       if (nextStepIndex >= 0 && nextStepIndex < steps.length) {
         const nextRoute = steps[nextStepIndex].route;
+        console.log(`[Joyride Debug] Current Path: ${pathname}, Next Step: ${nextStepIndex}, Next Route: ${nextRoute}`);
         
         if (nextRoute !== pathname) {
-          // Destruct Joyride instance implicitly via state isolation 
+          console.log(`[Joyride Debug] Destructing instance. Setting run=false. Pushing to ${nextRoute}`);
           setRun(false); 
-          
-          // DO NOT update stepIndex linearly during a route transition.
-          // This prevents Joyride's aggressive target validator from firing invisible 
-          // overlay traps ("button fucking") on the source page.
           sessionStorage.setItem("nutriserve_pending_step", nextStepIndex.toString());
           router.push(nextRoute);
         } else {
+          console.log(`[Joyride Debug] Intra-route navigation. Updating step to ${nextStepIndex}`);
           setStepIndex(nextStepIndex);
         }
       }
@@ -182,7 +180,7 @@ export default function WalkthroughGuide() {
 
   return (
     <Joyride
-      key={`${pathname}-${stepIndex}`}
+      key="nutriserve-joyride"
       onEvent={handleJoyrideCallback}
       continuous
       run={run}
