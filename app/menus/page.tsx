@@ -160,19 +160,6 @@ export default function MenusPage() {
         <Header title={t.title} subtitle={t.subtitle} />
 
         <div className="page-content">
-          {/* Cycle Management Toggles */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "var(--space-lg)" }}>
-            <div style={{ display: "flex", gap: "var(--space-sm)" }}>
-              {t.cycles.map((c, i) => (
-                <button key={i} className={`btn ${i === 0 ? "btn-primary" : "btn-ghost"} btn-sm`}>
-                  {c}
-                </button>
-              ))}
-            </div>
-            <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", background: "var(--bg-card)", padding: "4px 12px", borderRadius: "12px", border: "1px solid var(--border)" }}>
-              🔄 {lang === 'en' ? "Next Cycle: April 20, 2026" : "Próximo Ciclo: 20 de Abril, 2026"}
-            </div>
-          </div>
           {/* Sub-navigation Tabs */}
           <div style={{ display: "flex", gap: "var(--space-md)", marginBottom: "var(--space-lg)", borderBottom: "1px solid var(--border)", paddingBottom: "var(--space-sm)" }}>
             {Object.entries(t.tabs).map(([id, label]) => (
