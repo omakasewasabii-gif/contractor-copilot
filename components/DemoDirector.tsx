@@ -161,9 +161,44 @@ export default function DemoDirector() {
 
         {/* PORTAL JUMP BAR */}
         <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '10px' }}>
-          <button onClick={() => router.push('/')} style={{ flex: 1, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '8px', padding: '10px', fontSize: '0.65rem', cursor: 'pointer' }}>COMMAND CENTER</button>
-          <button onClick={() => router.push('/campuses')} style={{ flex: 1, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '8px', padding: '10px', fontSize: '0.65rem', cursor: 'pointer' }}>STAFF PORTAL</button>
-          <button onClick={() => router.push('/portal')} style={{ flex: 1, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '8px', padding: '10px', fontSize: '0.65rem', cursor: 'pointer' }}>PARENT PORTAL</button>
+          <button 
+            onClick={() => router.push('/')} 
+            style={{ 
+              flex: 1, 
+              background: pathname === '/' ? 'var(--accent)' : 'rgba(255,255,255,0.05)', 
+              border: '1px solid rgba(255,255,255,0.1)', 
+              color: pathname === '/' ? 'var(--primary-dark)' : '#fff', 
+              borderRadius: '8px', padding: '10px', fontSize: '0.65rem', fontWeight: 800, cursor: 'pointer' 
+            }}
+          >
+            MISSION CONTROL
+          </button>
+          <button 
+            onClick={() => router.push('/campuses')} 
+            style={{ 
+              flex: 1, 
+              background: pathname === '/campuses' ? 'var(--accent)' : 'rgba(255,255,255,0.05)', 
+              border: '1px solid rgba(255,255,255,0.1)', 
+              color: pathname === '/campuses' ? 'var(--primary-dark)' : '#fff', 
+              borderRadius: '8px', padding: '10px', fontSize: '0.65rem', fontWeight: 800, cursor: 'pointer' 
+            }}
+          >
+            STAFF PORTAL
+          </button>
+          {pathname !== '/portal' && (
+            <button 
+              onClick={() => router.push('/portal')} 
+              style={{ 
+                flex: 1, 
+                background: 'rgba(255,255,255,0.05)', 
+                border: '1px solid rgba(255,255,255,0.1)', 
+                color: '#fff', 
+                borderRadius: '8px', padding: '10px', fontSize: '0.65rem', fontWeight: 800, cursor: 'pointer' 
+              }}
+            >
+              PARENT PORTAL
+            </button>
+          )}
         </div>
       </div>
 
