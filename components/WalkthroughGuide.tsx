@@ -60,8 +60,15 @@ const steps: RouteStep[] = [
   {
     target: "body",
     placement: "center",
+    title: "Ordering & Production Forecasting",
+    content: "Eliminate waste with Suggestive Ordering. NutriServe's predictive engine forecasts production based on historical cycle menus, automatically generating electronic purchase orders (POs) for seamless vendor fulfillment.",
+    route: "/inventory",
+  },
+  {
+    target: "body",
+    placement: "center",
     title: "Eligibility & Verification Reporting",
-    content: "Back of House Automation. The Reports engine automatically aggregates District-wide transaction logs to process Direct Certification and ISP ratios. Data connects securely to Texas state validation tools without manual batch intervention.",
+    content: "Financial Management. The Reports engine runs transaction-level audits to process Direct Certification logistics, revenue vs capability tracking, and automated generation of state reimbursement claim forms.",
     route: "/reports",
   },
   {
@@ -75,7 +82,7 @@ const steps: RouteStep[] = [
     target: "body",
     placement: "center",
     title: "Training, Migration & Rollout",
-    content: "Software is only half the equation. Our phased rollout for all 69 EPISD sites includes full historical data migration, hands-on onsite/virtual training, robust digital guides, and a dedicated local Account Manager backed by our Help Desk.",
+    content: "Software is only half the equation. Our phased installation includes full historical data migration, hands-on onsite/virtual training, robust digital guides, and post-installation help desk SLAs managed by a dedicated local Account Manager.",
     route: "/",
   }
 ];
