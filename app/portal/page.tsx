@@ -284,7 +284,7 @@ export default function ParentPortal() {
         {/* Main Grid */}
         <div className="portal-grid">
           {/* Today's Menu */}
-          <div className="menu-card animate-fade-in">
+          <div className="menu-card animate-fade-in" data-demo-tooltip="RFP 26-027 Sect 2: Parent Transparency. Live menu portals with multilingual support (EN/ES).">
             <div className="menu-card-header">
               <h3>🍽️ {t.todayMenu} — {t.lunch}</h3>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -429,7 +429,7 @@ export default function ParentPortal() {
             </div>
 
             {/* Allergen Alert */}
-            <div className="account-card animate-fade-in" style={{ animationDelay: "150ms", borderColor: "rgba(239,68,68,0.2)" }}>
+            <div className="account-card animate-fade-in" style={{ animationDelay: "150ms", borderColor: "rgba(239,68,68,0.2)" }} data-demo-tooltip="RFP 26-027 Sect 2: Safety Protocols. Automated allergen flagging based on student profile.">
               <h3>⚠️ {t.allergensTitle}</h3>
               <div style={{ display: "flex", gap: "var(--space-sm)", marginBottom: "var(--space-sm)", flexWrap: "wrap" }}>
                 {childAllergens.map(a => (
@@ -444,7 +444,7 @@ export default function ParentPortal() {
             </div>
 
             {/* Nutrition Summary */}
-            <div className={`account-card animate-fade-in ${focusVault ? "demo-focus-target" : ""}`} style={{ animationDelay: "200ms", transition: 'all 0.3s ease' }}>
+            <div className={`account-card animate-fade-in ${focusVault ? "demo-focus-target" : ""}`} style={{ animationDelay: "200ms", transition: 'all 0.3s ease' }} data-demo-tooltip="RFP 26-027 Sect 2: Transparency. Real-time nutritional scoring against USDA benchmarks.">
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "var(--space-md)" }}>
                 <h3 style={{ margin: 0 }}>📊 {t.nutritionSummary}</h3>
                 <div style={{ fontSize: "0.6rem", background: "var(--success-bg)", color: "var(--success)", padding: "2px 8px", borderRadius: "10px", fontWeight: 700 }}>{t.compliant}</div>

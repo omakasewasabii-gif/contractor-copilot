@@ -134,7 +134,7 @@ export default function Dashboard() {
         <Header title={t.title} subtitle={t.subtitle} />
         <div className="page-content">
             <div className="stats-grid">
-              <div className="stat-card">
+              <div className="stat-card" data-demo-tooltip="RFP 26-027 Sect 3: Ground Control Dashboard. Real-time participation scale across 69 campuses.">
                 <div className="stat-icon green">📊</div>
                 <div className="stat-info">
                   <h3>12,847</h3>
@@ -165,7 +165,7 @@ export default function Dashboard() {
             </div>
 
             <div className="dashboard-row">
-              <section className="dashboard-section mission-control glass">
+              <section className="dashboard-section mission-control glass" data-demo-tooltip="RFP 26-027 Sect 1: Federal Program Parity & compliance rules engine (CEP, SBP, NSLP).">
                 <div className="section-header">
                   <h2>{t.mission.title}</h2>
                   <span className="badge active">{t.compliance.verified}</span>
@@ -193,7 +193,7 @@ export default function Dashboard() {
                 </div>
               </section>
 
-              <section className="dashboard-section throughput glass">
+              <section className="dashboard-section throughput glass" data-demo-tooltip="RFP 26-027 Sect 3: Infrastructure. Disaster Recovery, Latency monitoring, and load performance.">
                 <div className="section-header">
                   <h2>{t.throughput.title}</h2>
                   <div className="pulse-dot"></div>
@@ -220,7 +220,7 @@ export default function Dashboard() {
               </section>
             </div>
 
-            <section className="dashboard-section table-section glass">
+            <section className="dashboard-section table-section glass" data-demo-tooltip="RFP 26-027 Sect 2: Institutional Reporting. Automated Identified Student Percentage (ISP) tracking.">
               <div className="section-header">
                 <div>
                   <h2>{t.table.title}</h2>

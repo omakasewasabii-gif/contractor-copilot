@@ -194,7 +194,7 @@ export default function MenusPage() {
           {activeTab === "planning" && (
             <div className="animate-fade-in">
               {/* USDA Compliance Bar */}
-          <div className="card" style={{ marginBottom: "var(--space-lg)", padding: "var(--space-md) var(--space-lg)" }}>
+          <div className="card" style={{ marginBottom: "var(--space-lg)", padding: "var(--space-md) var(--space-lg)" }} data-demo-tooltip="RFP 26-027 Sect 2: Institutional Reporting. Direct USDA Meal Pattern certification and reporting logs.">
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "var(--space-md)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "var(--space-md)" }}>
                 <span style={{ fontSize: "1.5rem" }}>🛡️</span>
@@ -222,7 +222,7 @@ export default function MenusPage() {
           {/* Weekly Menu Grid */}
           <div style={{ display: "grid", gap: "var(--space-md)" }}>
             {t.weeklyMenu.map((day, di) => (
-              <div key={day.day} className="card animate-fade-in" style={{ animationDelay: `${di * 60}ms` }}>
+              <div key={day.day} className="card animate-fade-in" style={{ animationDelay: `${di * 60}ms` }} data-demo-tooltip="RFP 26-027 Sect 2: Parent Transparency. Live menu portal with automated allergen flagging.">
                 <div className="card-header">
                   <div className="card-title" style={{ fontSize: "1.1rem" }}>
                     📅 {day.day}
@@ -292,7 +292,7 @@ export default function MenusPage() {
 
           {activeTab === "cycles" && (
             <div className="animate-fade-in">
-              <div className="card">
+              <div className="card" data-demo-tooltip="RFP 26-027 Sect 2: Cycle Menu Management. Drag-and-drop planning for seasonal/rotating menus.">
                 <div className="card-header">
                   <div className="card-title">🔄 Cycle Menu Management</div>
                 </div>

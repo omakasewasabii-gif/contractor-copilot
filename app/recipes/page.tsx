@@ -96,7 +96,7 @@ export default function RecipesPage() {
           </div>
 
           {/* Right: Scaler Engine */}
-          <div className="glass-panel" style={{ padding: "var(--space-xl)" }}>
+          <div className="glass-panel" style={{ padding: "var(--space-xl)" }} data-demo-tooltip="RFP 26-027 Sect 2: Menu & Nutrition Intelligence. Production scaling and perpetual inventory sync (FIFO).">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "32px" }}>
               <div>
                 <h2 style={{ fontSize: "1.8rem", marginBottom: "8px" }}>{selectedRecipe.name[lang]}</h2>
@@ -130,7 +130,9 @@ export default function RecipesPage() {
               <div className="stat-card minimal"><h3>{selectedRecipe.nutrients.sodium}</h3><p>SODIUM</p></div>
             </div>
 
-            <div style={{ 
+            <div 
+              data-demo-tooltip="RFP 26-027 Sect 2: Automated nutritional analysis. Reimbursable validation for SBP & NSLP."
+              style={{ 
               marginBottom: "40px", 
               padding: "16px", 
               background: "rgba(16, 185, 129, 0.05)", 
