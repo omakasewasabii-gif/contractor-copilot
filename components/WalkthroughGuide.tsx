@@ -128,16 +128,6 @@ export default function WalkthroughGuide() {
       }
     }
 
-    // 2. Normal in-page startup or resumption
-    if (!run && stepIndex >= 0 && stepIndex < steps.length && pendingStep === null) {
-      if (steps[stepIndex].route === pathname) {
-        const timer = setTimeout(() => {
-           setRun(true);
-        }, 800);
-        return () => clearTimeout(timer);
-      }
-    }
-    
     // Safety fallback: if we're running but the current step belongs to a different route, disconnect
     if (run && steps[stepIndex] && steps[stepIndex].route !== pathname) {
        setRun(false);
