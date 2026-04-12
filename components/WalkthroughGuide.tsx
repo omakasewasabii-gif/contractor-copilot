@@ -59,10 +59,10 @@ export default function WalkthroughGuide() {
       content: "Let's start the checkout flow. Staff can instantly pull up student records by scanning a barcode, searching by name, or typing a student ID directly into the secure PIN pad.",
     },
     {
-      target: ".pos-menu-grid",
+      target: ".pos-grid",
       placement: "top",
-      title: "Step 2: Interactive Visual Menu",
-      content: "Cashiers tap these high-visibility, category-driven menu items to build the tray. You can toggle between Breakfast, Lunch, and Snack depending on the master cycle menu.",
+      title: "Step 2: Interactive Menu Matrix & Grid",
+      content: "Once a student is identified, the categorical cycle menu populates here. Cashiers tap these high-visibility items to build the tray. The system checks exact USDA compliance in real time.",
     },
     {
       target: ".demo-focus-target",
