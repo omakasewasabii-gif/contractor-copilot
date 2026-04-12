@@ -6,6 +6,7 @@ import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/components/LanguageContext";
+import { useToast } from "@/components/Toast";
 
 const content = {
   en: {
@@ -126,6 +127,7 @@ const content = {
 
 export default function Dashboard() {
   const { lang } = useLanguage();
+  const { showToast } = useToast();
   const t = content[lang];
   return (
     <div className="app-layout">
@@ -226,7 +228,12 @@ export default function Dashboard() {
                   <h2>{t.table.title}</h2>
                   <p className="section-subtitle">{t.table.subtitle}</p>
                 </div>
-                <button className="btn btn-ghost btn-sm">{t.table.viewAll}</button>
+                <button 
+                  className="btn btn-ghost btn-sm"
+                  onClick={() => showToast(lang === 'es' ? "Cargando directorio completo..." : "Loading total 69-campus roster...")}
+                >
+                  {t.table.viewAll}
+                </button>
               </div>
               <div className="table-responsive">
                 <table className="data-table">
