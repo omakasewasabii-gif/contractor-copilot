@@ -187,6 +187,8 @@ export default function WalkthroughGuide() {
       stepIndex={stepIndex}
       scrollToFirstStep
       steps={steps as Step[]}
+      showProgress={true}
+      showSkipButton={true}
       styles={{
         // @ts-ignore - react-joyride types are outdated for options
         options: {
@@ -219,8 +221,6 @@ export default function WalkthroughGuide() {
         textColor: "#333",
         backgroundColor: "#ffffff",
         overlayColor: "rgba(0, 0, 0, 0.6)",
-        showProgress: true,
-        buttons: ["back", "primary", "skip", "close"],
       }}
     />
   );
