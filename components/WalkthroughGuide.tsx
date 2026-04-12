@@ -118,13 +118,16 @@ export default function WalkthroughGuide() {
     if (pendingStep !== null) {
       const nextIdx = parseInt(pendingStep, 10);
       if (steps[nextIdx] && steps[nextIdx].route === pathname) {
+        // Remove item immediately so we don't process it again
         sessionStorage.removeItem("nutriserve_pending_step");
+        
+        // Use a timeout to wait for route hydration, but do not attach it to the useEffect cleanup 
+        // to prevent `setStepIndex` from cancelling the timer when it triggers a re-render.
         setStepIndex(nextIdx);
         
-        const timer = setTimeout(() => {
+        setTimeout(() => {
            setRun(true);
-        }, 1200); // Route is already mounted, short hydration delay
-        return () => clearTimeout(timer);
+        }, 1200); 
       }
     }
 

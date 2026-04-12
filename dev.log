@@ -1,0 +1,17 @@
+
+> episd-nutrition-pos@1.0.0 dev
+> next dev -p 3099 -p 3080
+
+   ▲ Next.js 15.5.15
+   - Local:        http://localhost:3080
+   - Network:      http://192.168.1.144:3080
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1148ms
+ ✓ Compiled /middleware in 103ms (114 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 534ms (641 modules)
+ GET / 200 in 759ms
+ GET / 200 in 26ms
+ ✓ Compiled in 312ms (641 modules)
