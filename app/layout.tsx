@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "@/components/Providers";
 import AntiTheft from "@/components/AntiTheft";
-import DemoDirector from "@/components/DemoDirector";
+
 import WalkthroughGuide from "@/components/WalkthroughGuide";
 
 export const metadata: Metadata = {
@@ -27,7 +27,6 @@ export default function RootLayout({
         <Providers>
           <AntiTheft>
             {children}
-            <DemoDirector />
             <WalkthroughGuide />
           </AntiTheft>
         </Providers>
