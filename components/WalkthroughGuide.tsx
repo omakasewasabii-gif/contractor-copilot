@@ -43,7 +43,7 @@ export default function WalkthroughGuide() {
       target: "body",
       placement: "center",
       title: "NutriServe: EPISD RFP 26-027",
-      content: "Welcome. Over the next 90 seconds, you'll see exactly how NutriServe fulfills your requirements. Our platform provides unified support for SBP, NSLP, CACFP, ASSP, and SSO programs with seamless architecture engineered specifically for your 69 campuses.",
+      content: "Welcome. You'll see exactly how NutriServe fulfills your requirements. Our platform provides unified support for SBP, NSLP, CACFP, ASSP, and SSO programs with seamless architecture engineered specifically for your 69 campuses.",
       skipBeacon: true,
     },
     {
