@@ -187,6 +187,9 @@ export default function WalkthroughGuide() {
       scrollToFirstStep
       steps={steps as Step[]}
       styles={{
+        options: {
+          zIndex: 9999,
+        },
         buttonPrimary: {
           backgroundColor: "var(--accent)",
           color: "#0a1628",

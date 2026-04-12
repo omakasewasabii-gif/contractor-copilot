@@ -164,9 +164,9 @@ export default function InventoryPage() {
                 fontFamily: "var(--font-mono)",
                 color: "var(--success)"
               }}>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "4px" }}>
                   <span>SYNC STATUS:</span>
-                  <span>ENCRYPTED</span>
+                  <span style={{ wordBreak: "break-all" }}>ENCRYPTED</span>
                 </div>
                 <div style={{ marginTop: "4px" }}>LAST: 2026-04-11 15:22:04</div>
               </div>
@@ -195,9 +195,14 @@ export default function InventoryPage() {
               <div className="stat-info">
                 <h3>1</h3>
                 <p>{t.stats.critical}</p>
-                  <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                    <div className="badge gold">RFP 26-027 COMPLIANT</div>
-                    <div className="badge success">CACFP SITE</div>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", alignItems: "center" }}>
+                    <div style={{ fontSize: "0.6rem", fontWeight: 800, color: "var(--text-muted)" }}>
+                      <span style={{ color: "var(--accent)" }}>RFP 26-027</span>
+                      <br/>COMPLIANT
+                    </div>
+                    <div style={{ fontSize: "0.6rem", fontWeight: 800, color: "var(--text-muted)", marginLeft: "auto" }}>
+                      CACFP<br/>SITE
+                    </div>
                   </div>
               </div>
             </div>
