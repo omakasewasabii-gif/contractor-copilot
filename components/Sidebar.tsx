@@ -124,13 +124,13 @@ export default function Sidebar() {
       }}>
       <div className="sidebar-header" style={{ padding: 'var(--space-lg)', borderBottom: '1px solid var(--border)' }}>
         <div className="sidebar-logo" style={{ 
-          background: "var(--accent)", width: 42, height: 42, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem',
-          boxShadow: '0 0 20px rgba(251, 222, 5, 0.2)'
+          width: 48, height: 48, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
         }}>
-          🥝
+          <img src="/episd-logo.png" alt="EPISD Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
         <div className="sidebar-brand">
-          <h1 style={{ fontSize: '1.3rem', fontWeight: 900, letterSpacing: '-0.5px' }}>NutriServe</h1>
+          <h1 style={{ fontSize: '1.2rem', fontWeight: 900, letterSpacing: '-0.5px' }}>EPISD Food & Nutrition</h1>
           <span style={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--accent)', textTransform: 'uppercase' }}>{t.brandSubtitle}</span>
         </div>
       </div>

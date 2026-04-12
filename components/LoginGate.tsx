@@ -222,23 +222,19 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
         {/* Logo Section */}
         <div style={{ textAlign: "center", marginBottom: "32px", animation: "fadeUp 0.8s ease-out" }}>
           <div style={{
-            width: 80, height: 80, borderRadius: 20,
-            background: "linear-gradient(135deg, #1e3a8a, #041E42)",
+            width: 90, height: 90, borderRadius: 20, overflow: 'hidden',
             boxShadow: "0 0 0 1px rgba(255,255,255,0.1), 0 10px 30px rgba(4, 30, 66, 0.5), inset 0 1px 0 rgba(255,255,255,0.2)",
             display: "flex", alignItems: "center", justifyContent: "center",
             margin: "0 auto 20px", position: "relative"
           }}>
-            <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" rx="20" fill="#EAAA00" />
-              <text x="50" y="50" fontFamily="Inter, sans-serif" fontSize="55" fontWeight="800" fill="#041E42" textAnchor="middle" dominantBaseline="central" letterSpacing="-2">NS</text>
-            </svg>
+            <img src="/episd-logo.png" alt="EPISD Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
           <h1 style={{
             fontSize: "2rem", fontWeight: 800, color: theme.textPri,
             letterSpacing: "-0.03em", marginBottom: 8,
             textShadow: isDaytime ? "none" : "0 2px 10px rgba(0,0,0,0.5)",
             transition: "color 0.3s ease"
-          }}>NutriServe</h1>
+          }}>EPISD Food & Nutrition</h1>
           <div style={{
             display: "inline-block", padding: "4px 12px", borderRadius: 20,
             background: isDaytime ? "rgba(234, 170, 0, 0.15)" : "rgba(234, 170, 0, 0.1)", 
