@@ -53,6 +53,13 @@ const steps: RouteStep[] = [
   {
     target: "body",
     placement: "center",
+    title: "Inventory & Supply Chain Integration",
+    content: "Perpetual Inventory & FIFO Protocol. NutriServe tracks real-time depletion and expiration dates, embedding direct Supply Chain APIs to ingest supplier catalogs (US Foods/Sysco) and run automated vendor cost analysis.",
+    route: "/inventory",
+  },
+  {
+    target: "body",
+    placement: "center",
     title: "Eligibility & Verification Reporting",
     content: "Back of House Automation. The Reports engine automatically aggregates District-wide transaction logs to process Direct Certification and ISP ratios. Data connects securely to Texas state validation tools without manual batch intervention.",
     route: "/reports",
