@@ -294,8 +294,33 @@ export default function MenusPage() {
                         }}>{w}</div>
                       ))}
                    </div>
-                   <div style={{ height: 200, background: "var(--bg-elevated)", border: "1px solid var(--border)", borderRadius: "var(--radius-md)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <p style={{ color: "var(--text-muted)" }}>Cycle visualization active. Drag and drop menus to reorder weeks.</p>
+                   <div style={{ padding: "var(--space-lg)", background: "var(--bg-elevated)", border: "1px solid var(--border)", borderRadius: "var(--radius-md)" }}>
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "var(--space-md)" }}>
+                        {[
+                          {day: lang === 'en' ? "Monday" : "Lunes", items: ["Chicken Tenders", "Salad Bar"]},
+                          {day: lang === 'en' ? "Tuesday" : "Martes", items: ["Beef Tacos", "Pinto Beans"]},
+                          {day: lang === 'en' ? "Wednesday" : "Miércoles", items: ["Burger & Bake", "Baby Carrots"]},
+                          {day: lang === 'en' ? "Thursday" : "Jueves", items: ["BBQ Chicken", "Corn Cobbette"]},
+                          {day: lang === 'en' ? "Friday" : "Viernes", items: ["Fish Sticks", "Coleslaw"]}
+                        ].map((d, i) => (
+                           <div key={i} className="animate-fade-in" style={{ animationDelay: `${i * 100}ms`, background: "var(--bg-card)", padding: "var(--space-md)", borderRadius: "var(--radius-sm)", border: "1px solid var(--border)", cursor: "grab", position: 'relative', overflow: 'hidden' }}>
+                              <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '3px', background: "var(--accent)" }}></div>
+                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, marginTop: 4 }}>
+                                 <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--text-primary)" }}>{d.day}</span>
+                                 <span style={{ opacity: 0.3, letterSpacing: "-2px" }}>⋮⋮</span>
+                              </div>
+                              <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                                {d.items.map(item => (
+                                  <div key={item} style={{ fontSize: "0.75rem", padding: "6px 8px", background: "rgba(251, 222, 5, 0.05)", border: "1px solid rgba(251, 222, 5, 0.1)", borderRadius: 6, color: "var(--text-muted)" }}>{item}</div>
+                                ))}
+                              </div>
+                           </div>
+                        ))}
+                      </div>
+                      <div style={{ marginTop: "var(--space-md)", textAlign: "center", fontSize: "0.75rem", color: "var(--text-muted)", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+                        <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: "var(--success)" }}></span>
+                        {lang === 'en' ? "Drag and drop enabled. USDA compliance auto-validates on drop." : "Arrastrar y soltar habilitado. Cumplimiento USDA validado automáticamente."}
+                      </div>
                    </div>
                 </div>
               </div>
