@@ -37,11 +37,11 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
         if (role === "parent") {
           if (!pathname.startsWith("/portal")) router.push("/portal");
         } else if (role === "staff") {
-          if (!["/pos", "/menus", "/inventory"].some(p => pathname.startsWith(p))) router.push("/pos");
+          if (!["/pos", "/menus", "/inventory", "/recipes"].some(p => pathname.startsWith(p))) router.push("/pos");
         }
       }
     }
-  }, [pathname, router]);
+  }, [pathname, router, mounted]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
