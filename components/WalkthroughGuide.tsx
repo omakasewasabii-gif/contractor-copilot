@@ -42,46 +42,45 @@ export default function WalkthroughGuide() {
     {
       target: "body",
       placement: "center",
-      title: "Welcome to NutriServe",
-      content: "This brief walkthrough will guide you through the platform's core functionalities. You'll learn how this system streamlines cafeteria operations while remaining 100% compliant with state and federal regulations.",
+      title: "NutriServe: EPISD RFP 26-027",
+      content: "Welcome. Over the next 90 seconds, you'll see exactly how NutriServe fulfills your requirements. Our platform provides unified support for SBP, NSLP, CACFP, ASSP, and SSO programs with seamless architecture engineered specifically for your 69 campuses.",
       skipBeacon: true,
     },
     {
       target: ".sidebar",
       placement: "right",
-      title: "Navigation Overview",
-      content: "This is the master navigation hub. From here, administrators and staff can fluidly transition between Point of Sale, Analytics, Campuses, and Medical Safety configurations with zero latency.",
+      title: "Data Management & Back of House",
+      content: "The Command Hub. Here, administrators configure Role-Based Access Controls (RBAC), Data Encryption strategies, and automated Database Backups/Disaster Recovery constraints. It hosts the automated reporting engine for Direct Certification, Identifed Student Percentages (ISP), and comprehensive revenue tracking.",
     },
     {
       target: ".student-lookup",
       placement: "right",
-      title: "Step 1: Student Lookup",
-      content: "Let's start the checkout flow. Staff can instantly pull up student records by scanning a barcode, searching by name, or typing a student ID directly into the secure PIN pad.",
+      title: "Hardware Agnostic & Identity",
+      content: "Seamless integration with touch screen interfaces, physical POS keyboards, PIN pads, and handheld card readers. The engine instantly queries the central database, managing meal application status and delivering live low/negative balance tracking with discrete staff notifications.",
     },
     {
       target: ".pos-grid",
       placement: "center",
-      title: "Step 2: Interactive Menu Matrix & Grid",
-      content: "Once a student is identified, the categorical cycle menu populates here. Cashiers tap these high-visibility items to build the tray. The system checks exact USDA compliance in real time.",
+      title: "Cycle Menus & Dietary Safety",
+      content: "Our deep Back-of-House integration pushes cycle menus, nutritional breakdowns, and recipe development directly to the POS. Real-time allergen tracking prevents cross-contamination, all mirrored on the Parent Portal for 100% transparency.",
     },
     {
       target: ".sync-status-bar",
       placement: "bottom",
-      title: "Important Features: Offline Capability",
-      content: "Critical feature: The Offline Synchronization engine. Even if the school loses network connectivity, the cafeteria continues processing meals. When back online, data syncs perfectly to the district ledger.",
+      title: "Offline Transaction Capability",
+      content: "Uninterrupted Execution. If internet connectivity drops, the POS immediately shifts to secure offline mode. Transactions cache locally with military-grade encryption and trigger automatic synchronization the millisecond the network is restored.",
     },
     {
       target: ".order-panel",
       placement: "left",
-      title: "Step 4: Smart Processing Engine",
-      content: "The system automatically calculates Federal/CEP program eligibility and applies balances. Transactions route seamlessly through El Paso's centralized payment gateway.",
+      title: "CEP & Payment Processing",
+      content: "The ledger automatically bridges CEP and Non-CEP site data. We natively process in-person payments (check, debit, credit) alongside the Online Payment Portal, producing real-time daily participation logs and meal equivalency reports.",
     },
-
     {
       target: "body",
       placement: "center",
-      title: "Walkthrough Complete!",
-      content: "You've completely processed a unified, compliant transaction. Take control using the Executive Mission Control overlay at any time to simulate hardware actions like barcode scans and allergy lockouts.",
+      title: "Training, Migration & Rollout",
+      content: "Software is only half the equation. Our phased rollout for all 69 EPISD sites includes full historical data migration, hands-on onsite/virtual training, robust digital guides, and a dedicated local Account Manager backed by our Help Desk.",
     }
   ];
 
