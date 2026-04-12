@@ -3,7 +3,7 @@ import "./globals.css";
 import Providers from "@/components/Providers";
 import AntiTheft from "@/components/AntiTheft";
 
-import WalkthroughGuide from "@/components/WalkthroughGuide";
+
 
 export const metadata: Metadata = {
   title: "NutriServe POS — EPISD Food & Nutrition Services",
@@ -27,7 +27,6 @@ export default function RootLayout({
         <Providers>
           <AntiTheft>
             {children}
-            <WalkthroughGuide />
           </AntiTheft>
         </Providers>
       </body>
