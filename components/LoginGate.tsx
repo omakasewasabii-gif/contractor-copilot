@@ -38,8 +38,6 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
           if (!pathname.startsWith("/portal")) router.push("/portal");
         } else if (role === "staff") {
           if (!["/pos", "/menus", "/inventory"].some(p => pathname.startsWith(p))) router.push("/pos");
-        } else if (role === "admin") {
-          if (pathname.startsWith("/portal")) router.push("/");
         }
       }
     }

@@ -81,6 +81,7 @@ export default function Sidebar() {
       items: [
         { icon: "🖥️", label: t.pos, href: "/pos" },
         ...(!isStaff ? [{ icon: "📊", label: t.dashboard, href: "/" }] : []),
+        ...(!isStaff ? [{ icon: "🏠", label: lang === "en" ? "Parent Portal" : "Portal de Padres", href: "/portal" }] : []),
         ...(!isStaff ? [{ icon: "👨‍🎓", label: t.students, href: "/students" }] : []),
       ],
     },
