@@ -213,7 +213,7 @@ export default function InventoryPage() {
 
           {/* Inventory Table */}
           {/* 📈 PREDICTIVE PRODUCTION ANALYTICS (BONUS HARDENING) */}
-          <div className="glass-panel" style={{ padding: "var(--space-xl)", marginBottom: "var(--space-xl)", border: "2px solid rgba(251, 222, 5, 0.2)" }} data-demo-tooltip="RFP 26-027 Sect 3: Inventory Management. Automated purchase orders based on AI yield forecasting.">
+          <div className="glass-panel" style={{ padding: "var(--space-xl)", marginBottom: "var(--space-xl)", border: "2px solid rgba(251, 222, 5, 0.2)" }} data-demo-tooltip="RFP 26-027 Sect 3: Inventory Management. Automated purchase orders based on historical yield forecasting.">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px" }}>
               <div>
                 <h3 style={{ fontSize: "1.4rem", color: "var(--accent)" }}>📈 Predictive Production Forecasting</h3>
