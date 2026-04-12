@@ -115,7 +115,7 @@ export default function WalkthroughGuide() {
       if (steps[stepIndex].route === pathname) {
         const timer = setTimeout(() => {
            setRun(true);
-        }, 1200); // Increased to 1.2s to guarantee DOM hydration
+        }, 1500); // 1.5s buffer to explicitly guarantee DOM hydration before target binding
         return () => clearTimeout(timer);
       }
     }
@@ -132,7 +132,7 @@ export default function WalkthroughGuide() {
       return;
     }
 
-    if (type === "step:after" || type === "error:target_not_found") {
+    if (type === "step:after") {
       let nextStepIndex = index;
       if (action === "next") {
         nextStepIndex = index + 1;
@@ -141,14 +141,22 @@ export default function WalkthroughGuide() {
       }
 
       if (nextStepIndex >= 0 && nextStepIndex < steps.length) {
-        setStepIndex(nextStepIndex);
-        
         const nextRoute = steps[nextStepIndex].route;
+        
         if (nextRoute !== pathname) {
           setRun(false); // Halt the tour immediately for navigation
-          router.push(nextRoute);
+          setStepIndex(nextStepIndex); // Pre-load the next index
+          setTimeout(() => {
+             router.push(nextRoute);
+          }, 100);
+        } else {
+          setStepIndex(nextStepIndex);
         }
       }
+    } else if (type === "error:target_not_found") {
+       // If it fails to find the target on page load, wait a moment and try again by toggling run state
+       setRun(false);
+       setTimeout(() => setRun(true), 1000);
     }
   };
 
