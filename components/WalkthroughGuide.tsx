@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
+import { Joyride, EventData, STATUS, Step } from "react-joyride";
 import { useRouter, usePathname } from "next/navigation";
 
 export default function WalkthroughGuide() {
@@ -44,7 +44,7 @@ export default function WalkthroughGuide() {
       placement: "center",
       title: "Welcome to NutriServe",
       content: "This brief walkthrough will guide you through the platform's core functionalities. You'll learn how this system streamlines cafeteria operations while remaining 100% compliant with state and federal regulations.",
-      disableBeacon: true,
+      skipBeacon: true,
     },
     {
       target: ".sidebar",
@@ -84,7 +84,7 @@ export default function WalkthroughGuide() {
     }
   ];
 
-  const handleJoyrideCallback = (data: CallBackProps) => {
+  const handleJoyrideCallback = (data: EventData) => {
     const { status, type } = data;
     const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
 
@@ -96,23 +96,13 @@ export default function WalkthroughGuide() {
 
   return (
     <Joyride
-      callback={handleJoyrideCallback}
+      onEvent={handleJoyrideCallback}
       continuous
-      hideCloseButton
       run={run}
       scrollToFirstStep
-      showProgress
-      showSkipButton
       steps={steps}
       styles={{
-        options: {
-          zIndex: 10000,
-          primaryColor: "#0a1628",
-          textColor: "#333",
-          backgroundColor: "#ffffff",
-          overlayColor: "rgba(0, 0, 0, 0.6)",
-        },
-        buttonNext: {
+        buttonPrimary: {
           backgroundColor: "var(--accent)",
           color: "#0a1628",
           fontWeight: 700,
@@ -130,6 +120,15 @@ export default function WalkthroughGuide() {
           fontWeight: 800,
           color: "var(--primary)",
         }
+      }}
+      options={{
+        zIndex: 10000,
+        primaryColor: "#0a1628",
+        textColor: "#333",
+        backgroundColor: "#ffffff",
+        overlayColor: "rgba(0, 0, 0, 0.6)",
+        showProgress: true,
+        buttons: ["back", "primary", "skip", "close"],
       }}
     />
   );
