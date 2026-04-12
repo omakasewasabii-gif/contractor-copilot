@@ -159,7 +159,7 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
       justifyContent: "center",
       backgroundColor: theme.bg,
       backgroundImage: theme.img,
-      backgroundSize: "100% 100%",
+      backgroundSize: "contain",
       backgroundPosition: "center center",
       backgroundRepeat: "no-repeat",
       padding: "var(--space-lg)",
