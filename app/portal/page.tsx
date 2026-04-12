@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useLanguage } from "@/components/LanguageContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -161,6 +162,7 @@ const mealHistory = [
 ];
 
 export default function ParentPortal() {
+  const router = useRouter();
   const { lang, setLang } = useLanguage();
   const [selectedPrepay, setSelectedPrepay] = useState<number | null>(null);
   const [balance, setBalance] = useState(12.50);
@@ -240,6 +242,13 @@ export default function ParentPortal() {
             <button className={lang === "en" ? "active" : ""} onClick={() => setLang("en")}>EN</button>
             <button className={lang === "es" ? "active" : ""} onClick={() => setLang("es")}>ES</button>
           </div>
+          <button 
+            className="btn btn-ghost btn-sm"
+            onClick={() => router.back()}
+            style={{ fontWeight: 600 }}
+          >
+            {lang === "en" ? "← Back" : "← Volver"}
+          </button>
           <button 
             className="btn btn-ghost btn-sm"
             onClick={() => { sessionStorage.clear(); window.location.reload(); }}
