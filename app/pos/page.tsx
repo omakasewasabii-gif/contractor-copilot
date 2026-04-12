@@ -297,8 +297,73 @@ export default function POSTerminal() {
 
   const getTotal = useCallback(() => {
     if (!student) return 0;
-    return order.reduce((sum, item) => sum + getItemPrice(item, student.eligibility) * item.qty, 0);
+    
+    let reimbursableMealsApplied = 0;
+    
+    return order.reduce((sum, item) => {
+      let itemTotal = 0;
+      
+      for (let i = 0; i < item.qty; i++) {
+        if (item.reimbursable) {
+          if (reimbursableMealsApplied === 0) {
+            // First reimbursable meal gets the student's eligibility pricing (Free for CEP)
+            itemTotal += getItemPrice(item, student.eligibility);
+            reimbursableMealsApplied++;
+          } else {
+            // Any additional reimbursable entrees revert to full A La Carte price
+            itemTotal += item.price;
+          }
+        } else {
+          // A La Carte items always charge full price
+          itemTotal += item.price;
+        }
+      }
+      
+      return sum + itemTotal;
+    }, 0);
   }, [order, student]);
+
+  const getLineItemBreakdown = useCallback((itemToCalc: OrderItem, allOrderItems: OrderItem[]) => {
+    if (!student) return { label: `$${itemToCalc.price.toFixed(2)}`, total: itemToCalc.price * itemToCalc.qty };
+    
+    let reimbursableMealsAppliedBefore = 0;
+    for (const item of allOrderItems) {
+      if (item.id === itemToCalc.id) break;
+      if (item.reimbursable) {
+         reimbursableMealsAppliedBefore += item.qty;
+      }
+    }
+    
+    let itemTotal = 0;
+    let hasDiscounted = false;
+    let hasFullPrice = false;
+    
+    for (let i = 0; i < itemToCalc.qty; i++) {
+        if (itemToCalc.reimbursable) {
+          if (reimbursableMealsAppliedBefore === 0) {
+            itemTotal += getItemPrice(itemToCalc, student.eligibility);
+            hasDiscounted = true;
+          } else {
+            itemTotal += itemToCalc.price;
+            hasFullPrice = true;
+          }
+          reimbursableMealsAppliedBefore++;
+        } else {
+          itemTotal += itemToCalc.price;
+          hasFullPrice = true;
+        }
+    }
+    
+    let label = `$${itemToCalc.price.toFixed(2)}`;
+    if (itemToCalc.reimbursable) {
+      if (hasDiscounted && hasFullPrice) {
+         label = `1×$${getItemPrice(itemToCalc, student.eligibility).toFixed(2)}, ${itemToCalc.qty - 1}×$${itemToCalc.price.toFixed(2)}`;
+      } else if (hasDiscounted) {
+         label = `$${getItemPrice(itemToCalc, student.eligibility).toFixed(2)}`;
+      }
+    }
+    return { label, total: itemTotal };
+  }, [student]);
 
   const [lastHash, setLastHash] = useState("");
 
@@ -806,13 +871,13 @@ export default function POSTerminal() {
                           {item.emoji} {item.name}
                         </div>
                         <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                          {t.qty}: {item.qty} × ${student ? getItemPrice(item, student.eligibility).toFixed(2) : item.price.toFixed(2)}
+                          {t.qty}: {item.qty} × {getLineItemBreakdown(item, order).label}
                           <span style={{ marginLeft: 8, color: "var(--accent)", fontWeight: 700 }}>[{getProgramAcronym(item.category)}]</span>
                         </div>
                       </div>
                       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                         <span style={{ fontWeight: 700, fontFamily: "var(--font-mono)" }}>
-                          ${student ? (getItemPrice(item, student.eligibility) * item.qty).toFixed(2) : (item.price * item.qty).toFixed(2)}
+                          ${getLineItemBreakdown(item, order).total.toFixed(2)}
                         </span>
                         <button onClick={() => removeFromOrder(item.id)} style={{
                           width: 24, height: 24, borderRadius: "50%",
