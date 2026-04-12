@@ -123,7 +123,7 @@ export default function WalkthroughGuide() {
         
         const timer = setTimeout(() => {
            setRun(true);
-        }, 500); // Route is already mounted, short hydration delay
+        }, 1200); // Route is already mounted, short hydration delay
         return () => clearTimeout(timer);
       }
     }

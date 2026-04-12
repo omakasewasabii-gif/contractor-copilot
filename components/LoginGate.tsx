@@ -88,7 +88,7 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
 
   const theme = isDaytime ? {
     bg: "#f0f9ff",
-    img: "url('/episd-hq.png')",
+    img: "url('/episd-hq.png?v=3')",
     overlay: "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4) 0%, rgba(240, 249, 255, 0.85) 100%)",
     grid: "rgba(0,0,0,0.1)",
     orb1: "rgba(253, 224, 71, 0.5)",
@@ -106,7 +106,7 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
     divider: "rgba(0,0,0,0.1)"
   } : {
     bg: "#020813",
-    img: "url('/episd-hq.png')",
+    img: "url('/episd-hq.png?v=3')",
     overlay: "radial-gradient(circle at 50% 50%, rgba(10, 22, 40, 0.6) 0%, rgba(2, 8, 19, 0.95) 100%)",
     grid: "rgba(255,255,255,0.5)",
     orb1: "rgba(59, 130, 246, 0.25)",
