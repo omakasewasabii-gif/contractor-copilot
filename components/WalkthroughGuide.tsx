@@ -109,17 +109,25 @@ export default function WalkthroughGuide() {
     return () => window.removeEventListener("start-demo-walkthrough", startTour);
   }, [pathname, router]);
 
-  // Handle cross-page tour resumption
+  // Handle cross-page tour resumption & initial boot sequence
   useEffect(() => {
-    if (!run && stepIndex > 0 && stepIndex < steps.length) {
+    // Determine if we need to wake up the tour because we've arrived at the correct route for the pending step
+    if (!run && stepIndex >= 0 && stepIndex < steps.length) {
       if (steps[stepIndex].route === pathname) {
         const timer = setTimeout(() => {
            setRun(true);
-        }, 1500); // 1.5s buffer to explicitly guarantee DOM hydration before target binding
+        }, 800); // Wait 800ms for DOM hydration
         return () => clearTimeout(timer);
       }
     }
-  }, [pathname, stepIndex, run]);
+    
+    // Safety fallback: if we're running but the current step belongs to a different route, 
+    // the system drifted. We must suspend until the route catches up.
+    if (run && steps[stepIndex] && steps[stepIndex].route !== pathname) {
+       setRun(false);
+       router.push(steps[stepIndex].route);
+    }
+  }, [pathname, stepIndex, run, router]);
 
   const handleJoyrideCallback = (data: EventData) => {
     const { status, type, action, index } = data;
@@ -144,24 +152,26 @@ export default function WalkthroughGuide() {
         const nextRoute = steps[nextStepIndex].route;
         
         if (nextRoute !== pathname) {
-          setRun(false); // Halt the tour immediately for navigation
-          setStepIndex(nextStepIndex); // Pre-load the next index
-          setTimeout(() => {
-             router.push(nextRoute);
-          }, 100);
+          // Pause execution immediately to prevent target searching
+          setRun(false); 
+          setStepIndex(nextStepIndex);
+          
+          // Execute soft navigation instantly
+          router.push(nextRoute);
         } else {
           setStepIndex(nextStepIndex);
         }
       }
     } else if (type === "error:target_not_found") {
-       // If it fails to find the target on page load, wait a moment and try again by toggling run state
+       console.warn(`NutriServe Joyride: Failed to mount target at step ${index}. Retrying in 1s.`);
        setRun(false);
-       setTimeout(() => setRun(true), 1000);
+       setTimeout(() => setRun(true), 1200);
     }
   };
 
   return (
     <Joyride
+      key={pathname} 
       onEvent={handleJoyrideCallback}
       continuous
       run={run}
@@ -172,11 +182,13 @@ export default function WalkthroughGuide() {
         buttonPrimary: {
           backgroundColor: "var(--accent)",
           color: "#0a1628",
-          fontWeight: 700,
+          fontWeight: 800,
           borderRadius: "8px",
+          padding: "8px 16px",
         },
         buttonBack: {
-          color: "#666",
+          color: "var(--text-secondary)",
+          marginRight: 10,
         },
         tooltip: {
           borderRadius: "12px",
