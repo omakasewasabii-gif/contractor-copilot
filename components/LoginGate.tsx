@@ -86,30 +86,6 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
     setPassword(acct.pw);
   };
 
-  if (authenticated) {
-    if (mounted) {
-      const role = sessionStorage.getItem("nutriserve_role");
-      if (role === "staff" && !["/pos", "/menus", "/inventory", "/recipes"].some(p => pathname.startsWith(p))) {
-        return (
-          <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: theme.bg, color: theme.textPri }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "center" }}>
-              <div style={{ width: 32, height: 32, border: "3px solid var(--accent)", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
-              <h3 style={{ fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>Engaging Hardware Bridge...</h3>
-            </div>
-          </div>
-        );
-      }
-      if (role === "parent" && !pathname.startsWith("/portal")) {
-        return (
-          <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: theme.bg }}>
-            <div style={{ width: 32, height: 32, border: "3px solid #3b82f6", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
-          </div>
-        );
-      }
-    }
-    return <>{children}</>;
-  }
-
   const theme = isDaytime ? {
     bg: "#f0f9ff",
     img: "url('/episd-hq.png')",
@@ -138,15 +114,49 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
     textPri: "#ffffff",
     textSec: "#94a3b8",
     cardBg: "rgba(10, 22, 40, 0.6)",
-    cardBorder: "rgba(255, 255, 255, 0.08)",
+    cardBorder: "rgba(255, 255, 255, 0.1)",
     cardBorderTop: "rgba(255, 255, 255, 0.15)",
-    inputBg: "rgba(0, 0, 0, 0.2)",
+    inputBg: "rgba(2, 8, 19, 0.6)",
     inputBorder: "rgba(255, 255, 255, 0.1)",
-    inputColor: "#fff",
-    iconColor: "#64748b",
-    btnCardBg: "rgba(0,0,0,0.2)",
+    inputColor: "#f8fafc",
+    iconColor: "#94a3b8",
+    btnCardBg: "rgba(255,255,255,0.05)",
     divider: "rgba(255,255,255,0.1)"
   };
+
+  if (authenticated) {
+    if (mounted) {
+      const role = sessionStorage.getItem("nutriserve_role");
+      if (role === "staff" && !["/pos", "/menus", "/inventory", "/recipes"].some(p => pathname.startsWith(p))) {
+        return (
+          <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: theme.bg, color: theme.textPri }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "center" }}>
+              <div style={{ width: 32, height: 32, border: "3px solid var(--accent)", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+              <h3 style={{ fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>Engaging Hardware Bridge...</h3>
+            </div>
+          </div>
+        );
+      }
+      if (role === "admin" && !["/dashboard", "/reports"].some(p => pathname.startsWith(p))) {
+        return (
+          <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: theme.bg, color: theme.textPri }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "center" }}>
+              <div style={{ width: 32, height: 32, border: "3px solid var(--accent)", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+              <h3 style={{ fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>Authenticating District Access...</h3>
+            </div>
+          </div>
+        );
+      }
+      if (role === "parent" && !pathname.startsWith("/portal")) {
+        return (
+          <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: theme.bg }}>
+            <div style={{ width: 32, height: 32, border: "3px solid #3b82f6", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+          </div>
+        );
+      }
+    }
+    return <>{children}</>;
+  }
 
   if (!mounted) return <div style={{ minHeight: "100vh", backgroundColor: isDaytime ? "#f0f9ff" : "#020813" }} />;
 

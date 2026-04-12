@@ -9,7 +9,7 @@ export default function NutritionalAnalysis() {
     <div className="app-layout">
       <Sidebar />
       <div className="main-content">
-        <Header />
+        <Header title="Nutrition" subtitle="Nutritional Standards" />
         <main className="page-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 'calc(100vh - 140px)' }}>
           <div className="card glass" style={{ maxWidth: 600, textAlign: 'center', padding: "var(--space-2xl)" }}>
             <div style={{ fontSize: "3rem", marginBottom: "var(--space-md)" }}>🥗</div>

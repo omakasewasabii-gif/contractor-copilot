@@ -187,6 +187,7 @@ export default function WalkthroughGuide() {
       scrollToFirstStep
       steps={steps as Step[]}
       styles={{
+        // @ts-ignore - react-joyride types are outdated for options
         options: {
           zIndex: 9999,
         },
