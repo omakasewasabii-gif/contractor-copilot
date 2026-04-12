@@ -152,6 +152,30 @@ export default function MenusPage() {
   const { lang } = useLanguage();
   const t = content[lang];
   const [activeTab, setActiveTab] = useState("planning");
+  const [draggedIdx, setDraggedIdx] = useState<number | null>(null);
+  const [cycleDays, setCycleDays] = useState([
+    { id: 'mon', dayEn: "Monday", dayEs: "Lunes", items: ["Chicken Tenders", "Salad Bar"] },
+    { id: 'tue', dayEn: "Tuesday", dayEs: "Martes", items: ["Beef Tacos", "Pinto Beans"] },
+    { id: 'wed', dayEn: "Wednesday", dayEs: "Miércoles", items: ["Burger & Bake", "Baby Carrots"] },
+    { id: 'thu', dayEn: "Thursday", dayEs: "Jueves", items: ["BBQ Chicken", "Corn Cobbette"] },
+    { id: 'fri', dayEn: "Friday", dayEs: "Viernes", items: ["Fish Sticks", "Coleslaw"] }
+  ]);
+
+  const handleDragStart = (e: React.DragEvent, index: number) => {
+    setDraggedIdx(index);
+  };
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+  const handleDrop = (e: React.DragEvent, targetIdx: number) => {
+    e.preventDefault();
+    if (draggedIdx === null) return;
+    const newDays = [...cycleDays];
+    const [draggedItem] = newDays.splice(draggedIdx, 1);
+    newDays.splice(targetIdx, 0, draggedItem);
+    setCycleDays(newDays);
+    setDraggedIdx(null);
+  };
 
   return (
     <div className="app-layout">
@@ -296,22 +320,28 @@ export default function MenusPage() {
                    </div>
                    <div style={{ padding: "var(--space-lg)", background: "var(--bg-elevated)", border: "1px solid var(--border)", borderRadius: "var(--radius-md)" }}>
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "var(--space-md)" }}>
-                        {[
-                          {day: lang === 'en' ? "Monday" : "Lunes", items: ["Chicken Tenders", "Salad Bar"]},
-                          {day: lang === 'en' ? "Tuesday" : "Martes", items: ["Beef Tacos", "Pinto Beans"]},
-                          {day: lang === 'en' ? "Wednesday" : "Miércoles", items: ["Burger & Bake", "Baby Carrots"]},
-                          {day: lang === 'en' ? "Thursday" : "Jueves", items: ["BBQ Chicken", "Corn Cobbette"]},
-                          {day: lang === 'en' ? "Friday" : "Viernes", items: ["Fish Sticks", "Coleslaw"]}
-                        ].map((d, i) => (
-                           <div key={i} className="animate-fade-in" style={{ animationDelay: `${i * 100}ms`, background: "var(--bg-card)", padding: "var(--space-md)", borderRadius: "var(--radius-sm)", border: "1px solid var(--border)", cursor: "grab", position: 'relative', overflow: 'hidden' }}>
+                        {cycleDays.map((d, i) => (
+                           <div 
+                             key={d.id} 
+                             draggable 
+                             onDragStart={(e) => handleDragStart(e, i)}
+                             onDragOver={handleDragOver}
+                             onDrop={(e) => handleDrop(e, i)}
+                             className="animate-fade-in" 
+                             style={{ 
+                               animationDelay: `${i * 100}ms`, 
+                               background: draggedIdx === i ? "var(--bg-elevated)" : "var(--bg-card)", 
+                               opacity: draggedIdx === i ? 0.5 : 1,
+                               padding: "var(--space-md)", borderRadius: "var(--radius-sm)", border: "1px solid var(--border)", cursor: "grab", position: 'relative', overflow: 'hidden', transition: "all 0.2s ease" 
+                             }}>
                               <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '3px', background: "var(--accent)" }}></div>
                               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, marginTop: 4 }}>
-                                 <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--text-primary)" }}>{d.day}</span>
+                                 <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--text-primary)" }}>{lang === 'en' ? d.dayEn : d.dayEs}</span>
                                  <span style={{ opacity: 0.3, letterSpacing: "-2px" }}>⋮⋮</span>
                               </div>
                               <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                                 {d.items.map(item => (
-                                  <div key={item} style={{ fontSize: "0.75rem", padding: "6px 8px", background: "rgba(251, 222, 5, 0.05)", border: "1px solid rgba(251, 222, 5, 0.1)", borderRadius: 6, color: "var(--text-muted)" }}>{item}</div>
+                                  <div key={item} style={{ fontSize: "0.75rem", padding: "6px 8px", background: "rgba(251, 222, 5, 0.05)", border: "1px solid rgba(251, 222, 5, 0.1)", borderRadius: 6, color: "var(--text-muted)", pointerEvents: "none" }}>{item}</div>
                                 ))}
                               </div>
                            </div>
