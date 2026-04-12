@@ -1362,6 +1362,10 @@ a:hover {
   text-align: center;
 }
 
+[data-demo-tooltip]:hover {
+  z-index: 100; /* Elevate above sticky header */
+}
+
 [data-demo-tooltip]:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
