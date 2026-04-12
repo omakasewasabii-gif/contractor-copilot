@@ -60,7 +60,7 @@ export default function WalkthroughGuide() {
     },
     {
       target: ".pos-grid",
-      placement: "top",
+      placement: "center",
       title: "Step 2: Interactive Menu Matrix & Grid",
       content: "Once a student is identified, the categorical cycle menu populates here. Cashiers tap these high-visibility items to build the tray. The system checks exact USDA compliance in real time.",
     },
