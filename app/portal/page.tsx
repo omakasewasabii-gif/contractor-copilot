@@ -168,6 +168,7 @@ export default function ParentPortal() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFullMenu, setShowFullMenu] = useState(false);
   const [focusVault, setFocusVault] = useState(false);
+  const [paymentExpired, setPaymentExpired] = useState(false);
 
   // Handle Demo Director Actions
   useEffect(() => {
@@ -392,40 +393,67 @@ export default function ParentPortal() {
           {/* Right Column */}
           <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-lg)" }}>
             {/* Account Balance */}
-            <div className={`account-card animate-fade-in ${focusVault ? "demo-focus-target" : ""}`} style={{ animationDelay: "100ms", transition: 'all 0.3s ease' }}>
+            <div className={`account-card animate-fade-in ${focusVault ? "demo-focus-target" : ""}`} style={{ animationDelay: "100ms", transition: 'all 0.3s ease', position: 'relative' }}>
               <h3>💰 {t.dashboard.balance}</h3>
-              <div className="balance-display" style={{ border: showSuccess ? "1px solid var(--success)" : "none", transition: "all 0.3s ease" }}>
-                <div className="balance-amount">${balance.toFixed(2)}</div>
+              <div style={{ position: 'absolute', top: 16, right: 16, cursor: 'pointer', opacity: 0.2 }} onClick={() => setPaymentExpired(!paymentExpired)}>🔄</div>
+              
+              <div className="balance-display" style={{ border: showSuccess ? "1px solid var(--success)" : paymentExpired ? "1px solid var(--danger)" : "none", transition: "all 0.3s ease" }}>
+                <div className="balance-amount" style={{ color: paymentExpired ? "var(--danger)" : "var(--text-primary)" }}>${balance.toFixed(2)}</div>
                 <div className="balance-label">Carlos Rodriguez — Bel Air MS</div>
               </div>
 
-              {balance < 15 && <div className="low-balance-alert">{t.lowBalance}</div>}
-
-              <div style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text-secondary)", marginBottom: "var(--space-sm)" }}>
-                {t.dashboard.addFunds}
-              </div>
-              <div className="prepay-amounts">
-                {[10, 25, 50, 100].map(amt => (
-                  <button key={amt} className={`prepay-btn ${selectedPrepay === amt ? "selected" : ""}`}
-                    onClick={() => setSelectedPrepay(amt)}
-                    disabled={isProcessing}>
-                    ${amt}
+              {paymentExpired ? (
+                <div className="low-balance-alert" style={{ background: "var(--danger-bg)", color: "var(--danger)", border: "1px solid rgba(239, 68, 68, 0.3)" }}>
+                  <div style={{ fontWeight: 700, marginBottom: "4px" }}>💳 Payment Method Expired</div>
+                  <div style={{ fontSize: "0.8rem", opacity: 0.9 }}>Your Visa ending in •••• 4242 has expired. Autopay for A la Carte extras is suspended.</div>
+                  <button 
+                    className="btn btn-primary" 
+                    style={{ background: "var(--danger)", color: "white", width: "100%", marginTop: "12px" }}
+                    onClick={() => {
+                      setIsProcessing(true);
+                      setTimeout(() => {
+                        setIsProcessing(false);
+                        setPaymentExpired(false);
+                        setShowSuccess(true);
+                        setTimeout(() => setShowSuccess(false), 3000);
+                      }, 1200);
+                    }}
+                    disabled={isProcessing}
+                  >
+                    {isProcessing ? "Authenticating Vault..." : "Update Payment Credentials"}
                   </button>
-                ))}
-              </div>
-              <button 
-                className={`btn ${showSuccess ? "btn-success" : "btn-accent"}`} 
-                style={{ width: "100%", justifyContent: "center", background: showSuccess ? "var(--success)" : undefined, color: showSuccess ? "white" : undefined }}
-                onClick={handlePayment}
-                disabled={!selectedPrepay || isProcessing || showSuccess}
-              >
-                {isProcessing 
-                  ? "Processing..." 
-                  : showSuccess 
-                    ? "✅ Payment Successful" 
-                    : `💳 ${t.payNow} ${selectedPrepay ? `— $${selectedPrepay}` : ""}`
-                }
-              </button>
+                </div>
+              ) : (
+                <>
+                  {balance < 15 && <div className="low-balance-alert">{t.lowBalance}</div>}
+
+                  <div style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text-secondary)", marginBottom: "var(--space-sm)" }}>
+                    {t.dashboard.addFunds}
+                  </div>
+                  <div className="prepay-amounts">
+                    {[10, 25, 50, 100].map(amt => (
+                      <button key={amt} className={`prepay-btn ${selectedPrepay === amt ? "selected" : ""}`}
+                        onClick={() => setSelectedPrepay(amt)}
+                        disabled={isProcessing}>
+                        ${amt}
+                      </button>
+                    ))}
+                  </div>
+                  <button 
+                    className={`btn ${showSuccess ? "btn-success" : "btn-accent"}`} 
+                    style={{ width: "100%", justifyContent: "center", background: showSuccess ? "var(--success)" : undefined, color: showSuccess ? "white" : undefined }}
+                    onClick={handlePayment}
+                    disabled={!selectedPrepay || isProcessing || showSuccess}
+                  >
+                    {isProcessing 
+                      ? "Processing..." 
+                      : showSuccess 
+                        ? "✅ Secured & Updated" 
+                        : `💳 ${t.payNow} ${selectedPrepay ? `— $${selectedPrepay}` : ""}`
+                    }
+                  </button>
+                </>
+              )}
             </div>
 
             {/* Allergen Alert */}

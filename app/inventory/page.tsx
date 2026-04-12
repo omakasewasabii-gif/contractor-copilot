@@ -290,7 +290,7 @@ export default function InventoryPage() {
           </div>
 
           {/* Audit Log Section */}
-          <div className="card" style={{ marginTop: "var(--space-lg)", background: "linear-gradient(180deg, var(--bg-card) 0%, rgba(12, 29, 63, 0.4) 100%)", border: "1px solid var(--border)" }} data-demo-tooltip="RFP 26-027 Sect 3: Audit Integrity. Non-repudiable SHA-256 logs for inventory adjustments.">
+          <div className="card" style={{ marginTop: "var(--space-lg)", background: "linear-gradient(180deg, var(--bg-card) 0%, rgba(12, 29, 63, 0.4) 100%)", border: "1px solid var(--border)" }} data-demo-tooltip="RFP 26-027 Sect 3: Audit Integrity. Tamper-proof SHA-256 logs for inventory adjustments.">
             <div className="card-header">
               <div>
                 <div className="card-title" style={{ color: "var(--accent)" }}>{t.auditLog.title}</div>
