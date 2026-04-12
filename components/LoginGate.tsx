@@ -133,12 +133,15 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: theme.bg,
+      backgroundImage: theme.img,
+      backgroundSize: "cover",
+      backgroundPosition: "center 20%",
+      backgroundRepeat: "no-repeat",
       padding: "var(--space-lg)",
       position: "relative",
       overflow: "hidden",
       transition: "background-color 0.5s ease"
     }}>
-
       {/* Theme Toggle Switch */}
       <div style={{
         position: "absolute", top: 24, right: 32, zIndex: 100,
