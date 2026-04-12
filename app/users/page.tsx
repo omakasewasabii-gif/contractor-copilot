@@ -36,14 +36,14 @@ export default function Users() {
               </thead>
               <tbody>
                 {[
-                  { name: "Sarah Jenkins", email: "sjenkins@episd.org", role: "District Dietitian", campus: "All Campuses", 2fa: "Secured", session: "Active" },
-                  { name: "Michael Vance", email: "mvance@episd.org", role: "Nutrition Director", campus: "All Campuses", 2fa: "Secured", session: "Inactive" },
-                  { name: "Elena Rodriguez", email: "erodriguez@episd.org", role: "Area Supervisor", campus: "West Zone (14)", 2fa: "Secured", session: "Active" },
-                  { name: "Robert Chen", email: "rchen@episd.org", role: "System Admin", campus: "Central Office", 2fa: "Secured", session: "Active" },
-                  { name: "Maria Garza", email: "mgarza@episd.org", role: "Cafeteria Manager", campus: "Coronado HS", 2fa: "Secured", session: "Inactive" },
-                  { name: "David Loya", email: "dloya@episd.org", role: "POS Cashier", campus: "Franklin HS", 2fa: "Pending", session: "Inactive" },
-                  { name: "Jessica Smith", email: "jsmith@episd.org", role: "POS Cashier", campus: "El Paso HS", 2fa: "Secured", session: "Active" },
-                  { name: "Carlos Soto", email: "csoto@episd.org", role: "Area Supervisor", campus: "Northeast Zone (12)", 2fa: "Secured", session: "Active" },
+                  { name: "Sarah Jenkins", email: "sjenkins@episd.org", role: "District Dietitian", campus: "All Campuses", "2fa": "Secured", session: "Active" },
+                  { name: "Michael Vance", email: "mvance@episd.org", role: "Nutrition Director", campus: "All Campuses", "2fa": "Secured", session: "Inactive" },
+                  { name: "Elena Rodriguez", email: "erodriguez@episd.org", role: "Area Supervisor", campus: "West Zone (14)", "2fa": "Secured", session: "Active" },
+                  { name: "Robert Chen", email: "rchen@episd.org", role: "System Admin", campus: "Central Office", "2fa": "Secured", session: "Active" },
+                  { name: "Maria Garza", email: "mgarza@episd.org", role: "Cafeteria Manager", campus: "Coronado HS", "2fa": "Secured", session: "Inactive" },
+                  { name: "David Loya", email: "dloya@episd.org", role: "POS Cashier", campus: "Franklin HS", "2fa": "Pending", session: "Inactive" },
+                  { name: "Jessica Smith", email: "jsmith@episd.org", role: "POS Cashier", campus: "El Paso HS", "2fa": "Secured", session: "Active" },
+                  { name: "Carlos Soto", email: "csoto@episd.org", role: "Area Supervisor", campus: "Northeast Zone (12)", "2fa": "Secured", session: "Active" },
                 ].map((user, i) => (
                   <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                     <td style={{ padding: '12px' }}>
