@@ -138,7 +138,7 @@ export default function InventoryPage() {
       <main className="main-content">
         <Header title={t.title} subtitle={t.subtitle} />
 
-        <div className="page-content">
+        <div className="page-content" data-teleprompter={"A major requirement for EPISD is accurate tracking. Our Production & Inventory system utilizes perpetual inventory tracking with FIFO (First-In, First-Out) methodology.\n\nThe system automatically generates daily food production records based on your cycle menus and actual POS drawdowns. This drastically reduces administrative overhead for cafeteria managers. It also monitors waste and integrates with vendor ordering for seamless delivery scheduling."}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "var(--space-lg)" }}>
             <div style={{ fontSize: "0.7rem", fontWeight: 800, color: "var(--success)", background: "var(--success-bg)", padding: "4px 12px", borderRadius: "20px", border: "1px solid var(--success)" }}>
               🔒 {t.perpetualTitle}

@@ -178,7 +178,7 @@ export default function ReportsPage() {
       <main className="main-content" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Header title={t.title} subtitle={t.subtitle} />
 
-        <div className="page-content">
+        <div className="page-content" data-teleprompter={"Finally, let's look at Data Management and Institutional Reporting. For the central office, this is where NutriServe pays for itself.\n\nWe fully automate the Direct Certification and Verification processes. The system actively monitors your Identified Student Percentage (ISP) to optimize your CEP grouping and ensures your monthly reimbursement claims are perfectly reconciled.\n\nEvery piece of data—from cash journals to participation metrics and end-of-year reports—is secured using Role-Based Access Controls and SHA-256 encryption. Your data is backed by enterprise-grade Disaster Recovery protocols."}>
           {/* Summary Stats */}
           <div className="stats-grid" data-demo-tooltip="RFP 26-027 Sect 2: Meal Tracking & Claiming, Revenue & Expense Tracking">
             <div className="stat-card">

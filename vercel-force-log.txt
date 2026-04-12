@@ -1,0 +1,28 @@
+Retrieving project…
+Deploying omakases-projects/emerald-triangulum
+Uploading [--------------------] (0.0B/69B)
+Uploading [====================] (69.0B/69B)
+Inspect: https://vercel.com/omakases-projects/emerald-triangulum/DiZdHprvtZNNHsmnHRYt4sB6p6An [2s]
+Production: https://emerald-triangulum-6sql7opq0-omakases-projects.vercel.app [2s]
+https://emerald-triangulum-6sql7opq0-omakases-projects.vercel.appBuilding...
+Building: Running build in Washington, D.C., USA (East) – iad1
+Building: Build machine configuration: 2 cores, 8 GB
+Building: Retrieving list of deployment files...
+Building: Retrieving list of deployment files...
+Building: Downloading 66 deployment files...
+Building: Restored build cache from previous deployment (CMGcjbEAoig46NKdXm1SkvZYTUk3)
+Building: Running "vercel build"
+Building: Vercel CLI 50.42.0
+Building: Installing dependencies...
+Building: up to date in 583ms
+Building: 17 packages are looking for funding
+Building: run `npm fund` for details
+Building: Detected Next.js version: 15.5.15
+Building: Running "npm run build"
+Building: > episd-nutrition-pos@1.0.0 build
+Building: > next build
+Building: ▲ Next.js 15.5.15
+Building: Creating an optimized production build ...
+Building: ✓ Compiled successfully in 5.6s
+Building: Linting and checking validity of types ...
+Error: Command "npm run build" exited with 1

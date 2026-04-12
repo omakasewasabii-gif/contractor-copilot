@@ -68,7 +68,7 @@ export default function RecipesPage() {
       <Sidebar />
       <main className="main-content">
         <Header title={t.title} subtitle={t.subtitle} />
-        <div className="page-content" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "var(--space-xl)" }}>
+        <div className="page-content" data-teleprompter={"Moving to the Back of House. Here we have our Menu & Nutrition Intelligence module. NutriServe handles full cycle menu management and recipe development.\n\nWhat stands out here is the automated nutritional analysis. When you build a recipe, the system automatically tracks allergens—peanuts, dairy, gluten. This translates directly to the POS to trigger medical lockouts protecting student health.\n\nFurthermore, this data feeds directly into our Parent Menu Portal. Parents have total transparency—they can log in, view the menu, and filter by allergens so they know exactly what their children can safely eat. Through this exact same portal, parents access our Online Application Portal to submit and monitor their household meal applications securely."} style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "var(--space-xl)" }}>
           
           {/* Left: Recipe List */}
           <div className="glass-panel" style={{ padding: "var(--space-lg)" }}>

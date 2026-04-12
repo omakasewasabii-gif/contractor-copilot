@@ -473,6 +473,7 @@ export default function POSTerminal() {
           {/* Connection & Sync Status Bar */}
           <div 
             className={`sync-status-bar ${focusSecure ? "demo-focus-target" : ""}`} 
+            data-teleprompter={"Let's move to the frontlines: the Point of Sale terminal. This is where speed and reliability are non-negotiable.\n\nFirst, notice the interface. It's universally adaptable—it works flawlessly with touchscreens, physical keyboards, and we have live integration with Zebra handheld scanners and Verifone PIN pads.\n\nBut the most critical feature here is our Offline-First Strategy. If a campus loses internet, the lunch line does not stop. The system continues processing transactions offline, and the moment the connection is restored, it instantly synchronizes in the background.\n\nIt handles CEP and Non-CEP sites dynamically, and natively tracks Federal Program parity across all required programs: SBP, NSLP, CACFP, ASSP, and SSO. If a student has a negative balance or an allergy, the system flags it instantly at the terminal."}
             data-demo-tooltip={lang === 'en' ? "RFP 26-027 Sect 1: Offline transaction capability with automatic synchronization across all 69 campuses." : "Motor de sincronización. Transacciones sin conexión con sincronización automática."}
             style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
