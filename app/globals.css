@@ -683,7 +683,6 @@ a:hover {
   border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .order-header {
@@ -903,7 +902,6 @@ a:hover {
 /* === Premium Card Hover === */
 .card {
   position: relative;
-  overflow: hidden;
 }
 
 .card::before {
@@ -967,7 +965,6 @@ a:hover {
 /* === Button Shine Effect === */
 .btn-accent {
   position: relative;
-  overflow: hidden;
 }
 
 .btn-accent::after {
@@ -990,7 +987,6 @@ a:hover {
 /* === Nav Item Polish === */
 .nav-item {
   position: relative;
-  overflow: hidden;
 }
 
 .nav-item::after {
