@@ -181,12 +181,12 @@ export default function DemoDirector() {
             MISSION CONTROL
           </button>
           <button 
-            onClick={() => router.push('/campuses')} 
+            onClick={() => router.push('/pos')} 
             style={{ 
               flex: 1, 
-              background: pathname === '/campuses' ? 'var(--accent)' : 'rgba(255,255,255,0.05)', 
+              background: pathname === '/pos' ? 'var(--accent)' : 'rgba(255,255,255,0.05)', 
               border: '1px solid rgba(255,255,255,0.1)', 
-              color: pathname === '/campuses' ? 'var(--primary-dark)' : '#fff', 
+              color: pathname === '/pos' ? 'var(--primary-dark)' : '#fff', 
               borderRadius: '8px', padding: '10px', fontSize: '0.65rem', fontWeight: 800, cursor: 'pointer' 
             }}
           >
