@@ -1371,7 +1371,7 @@ a:hover {
   transform: translateX(-50%) translateY(0);
 }
 
-/* === Ghost Teleprompter (Master Script) === */
+@keyframes pulse-gold {
   0% { box-shadow: 0 0 0 0 rgba(251, 222, 5, 0.7); }
   70% { box-shadow: 0 0 0 15px rgba(251, 222, 5, 0); }
   100% { box-shadow: 0 0 0 0 rgba(251, 222, 5, 0); }

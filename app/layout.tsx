@@ -29,8 +29,8 @@ export default function RootLayout({
           <AntiTheft>
             {children}
           </AntiTheft>
+          <Teleprompter />
         </Providers>
-        <Teleprompter />
       </body>
     </html>
   );
