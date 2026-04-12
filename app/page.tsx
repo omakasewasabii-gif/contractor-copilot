@@ -167,7 +167,7 @@ export default function Dashboard() {
             </div>
 
             <div className="dashboard-row">
-              <section className="dashboard-section mission-control glass" data-demo-tooltip="RFP 26-027 Sect 1: Federal Program Parity & compliance rules engine (CEP, SBP, NSLP).">
+              <section className="dashboard-section mission-control glass" data-demo-tooltip="RFP 26-027 Sect 1: Federal Program Parity & compliance rules engine (CEP, SBP, NSLP)." data-teleprompter={"Good morning, everyone. I'm Fresh, the Lead Developer and Operator behind NutriServe.\n\nWhen my team looked at EPISD's requirements for RFP 26-027, we didn't just see a technical checklist. We saw the operational reality of managing 69 campuses, millions of dollars in federal funding, and the daily chaos of the lunchline.\n\nMost software vendors build tools that look good in a boardroom but break on the frontlines. NutriServe was built differently. It's an institutional-grade operating system designed specifically around zero-downtime, offline-first reliability, and strict federal compliance.\n\nLet's dive in. If you look at the screen I'm sharing, we'll start at the top:\n\nWhat you are looking at right now is our Mission Control Dashboard. This is the central office's high-altitude view of the entire district's operations in real-time.\n\nFrom here, you have an immediate pulse on compliance, daily drawdowns, and network health across the district. Everything is secured with Role-Based Access Controls."}>
                 <div className="section-header">
                   <h2>{t.mission.title}</h2>
                   <span className="badge active">{t.compliance.verified}</span>
