@@ -96,5 +96,53 @@ export const DEMO_SCENARIOS: Scenario[] = [
     targetState: {
       expandMenu: true
     }
+  },
+  {
+    id: "06",
+    name: "Menu Planning",
+    path: "/menus",
+    narrative: "Cycle Planning: Demonstrating compliance with standard cycle menus and TDA/USDA regulations.",
+    bullets: [
+      "Build interactive weekly cycles",
+      "Auto-verify compliance for dietary needs",
+      "One-click USDA publishing"
+    ],
+    bulletsEs: [
+      "Construya ciclos semanales interactivos",
+      "Verificación automática de necesidades dietéticas",
+      "Publicación del USDA con un clic"
+    ]
+  },
+  {
+    id: "07",
+    name: "Recipe Intelligence",
+    path: "/recipes",
+    narrative: "Nutritional Transparency: Automated scaling and production intelligence for all EPISD recipes.",
+    bullets: [
+      "Real-time calorie and allergen calculation",
+      "Precision production scaling (1 to 10,000+ servings)",
+      "Integrated compliance certificates"
+    ],
+    bulletsEs: [
+      "Cálculo de calorías y alérgenos en tiempo real",
+      "Escalado de producción de precisión (1 a 10,000+ porciones)",
+      "Certificados de cumplimiento integrados"
+    ]
+  },
+  {
+    id: "08",
+    name: "Campus Directory",
+    path: "/students",
+    narrative: "Demographic Control: Real-time sync with ClassLink/SIS for instant eligibility validation.",
+    bullets: [
+      "Immediate demographic synchronization",
+      "Universal Free/Reduced status management",
+      "Secure parent portal provisioning"
+    ],
+    bulletsEs: [
+      "Sincronización demográfica inmediata",
+      "Gestión de estado Universal Gratis/Reducido",
+      "Aprovisionamiento seguro del portal para padres"
+    ]
   }
 ];
