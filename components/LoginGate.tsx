@@ -483,6 +483,7 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
                   window.dispatchEvent(new CustomEvent('nutriserve-demo-action', { 
                     detail: { id: "01", path: "/" } 
                   }));
+                  window.dispatchEvent(new CustomEvent('start-demo-walkthrough'));
                 }, 500);
               }}
               className="animate-pulse-gold gold-glow"
