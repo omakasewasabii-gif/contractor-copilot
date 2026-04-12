@@ -515,7 +515,7 @@ export default function LoginGate({ children }: { children: React.ReactNode }) {
               }}
             >
               <span style={{ fontSize: "1.4rem" }}>🚀</span>
-              LAUNCH EXECUTIVE MISSION CONTROL
+              DEMO WALKTHROUGH
             </button>
           </div>
         </form>
