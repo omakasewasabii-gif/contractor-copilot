@@ -227,7 +227,7 @@ export default function ParentPortal() {
       <header className="portal-header">
         <div className="portal-brand">
           <div className="portal-brand-logo" style={{ background: "transparent", padding: 0 }}>
-            <img src="/logo.png" alt="NutriServe Custom Icon" style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: 12 }} />
+            <img src="/episd-logo.png" alt="NutriServe Custom Icon" style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: 12 }} />
           </div>
           <div className="portal-brand-text">
             <h1>NutriServe</h1>
