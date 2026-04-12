@@ -140,7 +140,7 @@ export default function StudentsPage() {
                 <input 
                   type="text" 
                   className="input-field" 
-                  placeholder="e.g. John Doe" 
+                  placeholder="e.g. Mateo Ramirez" 
                   value={newStudent.name}
                   onChange={e => setNewStudent({...newStudent, name: e.target.value})}
                   style={{ width: '100%' }} 
