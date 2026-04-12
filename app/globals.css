@@ -924,7 +924,6 @@ a:hover {
 
 .stat-card {
   position: relative;
-  overflow: hidden;
 }
 
 .stat-card::after {
