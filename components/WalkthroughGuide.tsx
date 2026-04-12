@@ -97,6 +97,8 @@ export default function WalkthroughGuide() {
     
     const startTour = () => {
       setStepIndex(0);
+      sessionStorage.removeItem("nutriserve_tour_complete");
+      sessionStorage.removeItem("nutriserve_pending_step");
       if (pathname !== "/") {
          router.push("/");
          setTimeout(() => setRun(true), 800);
@@ -111,21 +113,34 @@ export default function WalkthroughGuide() {
 
   // Handle cross-page tour resumption & initial boot sequence
   useEffect(() => {
-    // Determine if we need to wake up the tour because we've arrived at the correct route for the pending step
-    if (!run && stepIndex >= 0 && stepIndex < steps.length) {
+    // 1. Process deferred cross-route step transitions
+    const pendingStep = sessionStorage.getItem("nutriserve_pending_step");
+    if (pendingStep !== null) {
+      const nextIdx = parseInt(pendingStep, 10);
+      if (steps[nextIdx] && steps[nextIdx].route === pathname) {
+        sessionStorage.removeItem("nutriserve_pending_step");
+        setStepIndex(nextIdx);
+        
+        const timer = setTimeout(() => {
+           setRun(true);
+        }, 500); // Route is already mounted, short hydration delay
+        return () => clearTimeout(timer);
+      }
+    }
+
+    // 2. Normal in-page startup or resumption
+    if (!run && stepIndex >= 0 && stepIndex < steps.length && pendingStep === null) {
       if (steps[stepIndex].route === pathname) {
         const timer = setTimeout(() => {
            setRun(true);
-        }, 800); // Wait 800ms for DOM hydration
+        }, 800);
         return () => clearTimeout(timer);
       }
     }
     
-    // Safety fallback: if we're running but the current step belongs to a different route, 
-    // the system drifted. We must suspend until the route catches up.
+    // Safety fallback: if we're running but the current step belongs to a different route, disconnect
     if (run && steps[stepIndex] && steps[stepIndex].route !== pathname) {
        setRun(false);
-       router.push(steps[stepIndex].route);
     }
   }, [pathname, stepIndex, run, router]);
 
@@ -152,20 +167,23 @@ export default function WalkthroughGuide() {
         const nextRoute = steps[nextStepIndex].route;
         
         if (nextRoute !== pathname) {
-          // Pause execution immediately to prevent target searching
+          // Destruct Joyride instance implicitly via state isolation 
           setRun(false); 
-          setStepIndex(nextStepIndex);
           
-          // Execute soft navigation instantly
+          // DO NOT update stepIndex linearly during a route transition.
+          // This prevents Joyride's aggressive target validator from firing invisible 
+          // overlay traps ("button fucking") on the source page.
+          sessionStorage.setItem("nutriserve_pending_step", nextStepIndex.toString());
           router.push(nextRoute);
         } else {
           setStepIndex(nextStepIndex);
         }
       }
     } else if (type === "error:target_not_found") {
-       console.warn(`NutriServe Joyride: Failed to mount target at step ${index}. Retrying in 1s.`);
+       console.warn(`NutriServe Joyride: Failed to mount target at step ${index}. Recovering gracefully.`);
        setRun(false);
-       setTimeout(() => setRun(true), 1200);
+       // Purge out of the error lock completely before trying again
+       setTimeout(() => setRun(true), 1500);
     }
   };
 
