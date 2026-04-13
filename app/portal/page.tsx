@@ -273,7 +273,7 @@ export default function ParentPortal() {
               <div className="stat-label">{t.mealApp}</div>
             </div>
             <div className="welcome-stat">
-              <div className="stat-val" style={{ color: "var(--success)" }}>MEAL ELIGIBLE</div>
+              <div className="stat-val" style={{ color: "var(--success)" }}>{lang === "en" ? "MEAL ELIGIBLE" : "ELEGIBLE"}</div>
               <div className="stat-label">CEP Universal</div>
             </div>
             <div className="welcome-stat" style={{ minWidth: "120px" }}>
