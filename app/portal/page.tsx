@@ -244,7 +244,7 @@ export default function ParentPortal() {
           </div>
           <button 
             className="btn btn-ghost btn-sm"
-            onClick={() => router.back()}
+            onClick={() => router.push("/")}
             style={{ fontWeight: 600 }}
           >
             {lang === "en" ? "← Back" : "← Volver"}
